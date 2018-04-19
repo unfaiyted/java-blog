@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Roll or Go home!</title>
+</head>
+<body>
+
+<h1>Guess the number!</h1>
+
+<p>min: 1 max: 6</p>
+
+<form method="post" action="/roll-dice/{number}"></form>
+    <input type="number" id="guess" name="guess" min="1" max="6"/>
+    <button type="submit">GUESS NOW!</button>
+
+<div class="alert alert-danger" th:if="${page_submitted}">
+    You guessed  <span th:text="${roll_guess}"></span>.
+    Actual was  <span th:text="${roll_actual}"></span>
+</div>
+
+<div ></div>
+</body>
+</html>
