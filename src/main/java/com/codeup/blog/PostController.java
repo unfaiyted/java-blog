@@ -10,26 +10,33 @@ import java.util.List;
 
 @Controller
 public class PostController {
+    private final PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
     public String index(Model model) {
 
-        List<Post> posts = new ArrayList<Post>();
-
-        posts.add(new Post("My Best Post", "I am the best at posts"));
-        posts.add(new Post("My Second Best Post", "I am the best at posts"));
-
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", postService.findAll());
 
         return "posts/index";
     }
 
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
-    public String view(@PathVariable int id, Model model) {
+    public String view(@PathVariable Long id, Model model) {
 
-        Post post = new Post("My Best Post", "I am the best at posts");
-        model.addAttribute(post);
-        return "posts/show";
+
+
+        Post post = postService.findOne(id);
+
+        if (post != null) {
+            model.addAttribute("post", post);
+            return "posts/show";
+        } else {
+            return "posts/index";
+        }
     }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)

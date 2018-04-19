@@ -8,7 +8,8 @@
 
 
 <div th:each="post : ${posts}">
-    <p th:text="${post.title}" />
+    <span th:text="${post.getId()}"></span>
+    <p th:text="${post.getTitle()}" />
 </div>
 
 

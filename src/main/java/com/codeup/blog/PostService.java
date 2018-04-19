@@ -10,7 +10,7 @@ public class PostService {
     private List<Post> posts;
 
     public PostService() {
-        posts = new ArrayList<Post>;
+        posts = new ArrayList<Post>();
         createPosts();
     }
 
@@ -19,9 +19,12 @@ public class PostService {
     }
 
     public Post findOne(Long id) {
-        Post post = new Post("I found this","found one");
-
-        return post;
+        for(Post post: posts) {
+            if(post.getId().equals(id)) {
+                return post;
+            }
+        }
+        return null;
     }
 
     public Post save(Post post) {
@@ -31,6 +34,12 @@ public class PostService {
 
     // Testing posts!
     private void createPosts() {
+        posts.add(new Post(Long.parseLong("1"),"This is thde title","this is the body"));
+        posts.add(new Post(Long.parseLong("2"),"This is the title","this is the body"));
+        posts.add(new Post(Long.parseLong("3"),"This is the stitle","this is dthe body"));
+        posts.add(new Post(Long.parseLong("4"),"This is thed title","this is thes body"));
+        posts.add(new Post(Long.parseLong("5"),"This is the title","this is the body"));
+        posts.add(new Post(Long.parseLong("6"),"This is dthe title","this is the boddy"));
 
     }
 
