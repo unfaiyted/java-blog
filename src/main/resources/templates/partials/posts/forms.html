@@ -1,12 +1,13 @@
 
 <div th:fragment="post">
-        <form action="/posts/create" method="post" th:object="${post}">
+        <form th:action="${action}" method="post" th:object="${post}">
             Title:
             <input th:field="*{title}" />
             <br />
             Description:
             <input th:field="*{body}" />
             <br />
+            <input type="hidden" th:field="*{id}" th:value="*{id}"/>
             <input type="submit" />
         </form>
     </div>

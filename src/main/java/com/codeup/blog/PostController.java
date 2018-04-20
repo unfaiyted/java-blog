@@ -36,8 +36,37 @@ public class PostController {
         }
     }
 
+    @RequestMapping(path = "/posts/{id}/edit", method = RequestMethod.GET)
+    public String edit(@PathVariable Long id, Model model) {
+        Post post = postService.findOne(id);
+
+        if (post != null) {
+            model.addAttribute("action", "");
+            model.addAttribute("post", post);
+            return "posts/edit";
+        } else {
+            return index(model);
+        }
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String editPost(@PathVariable Long id, @ModelAttribute Post post,  Model model) {
+        // Post post = postService.findOne(id);
+        if (post != null) {
+
+            postService.edit(post);
+            // model.addAttribute("edit", true);
+            model.addAttribute("action", "/posts/"+ id +"/edit");
+            model.addAttribute("post", post);
+            return "posts/edit";
+        } else {
+            return index(model);
+        }
+    }
+
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
     public String createGet(Model model) {
+        model.addAttribute("action", "/posts/create");
         model.addAttribute("post", new Post());
         return "posts/create";
     }
@@ -51,6 +80,10 @@ public class PostController {
 
         return view(nextId, model);
     }
+
+
+
+
 }
 
 

@@ -42,6 +42,16 @@ public class PostService {
             return post;
     }
 
+    public Post edit(Post post) {
+        for(Post p: posts) {
+            if(p.getId().equals(post.getId())) {
+                    p.setBody(post.getBody());
+                    p.setTitle(post.getTitle());
+            }
+        }
+        return null;
+    }
+
     // Testing posts!
     private void createPosts() {
         posts.add(new Post(Long.parseLong("1"),"This is thde title","this is the body"));
