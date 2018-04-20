@@ -1,9 +1,16 @@
 package com.codeup.blog;
 
+import javax.persistence.*;
+
 // Post object
+@Entity
+@Table(name="posts")
 public class Post {
+    @Id @GeneratedValue
     private Long id;
+    @Column(nullable = false, length = 255)
     private String title;
+    @Column(nullable = false)
     private String body;
 
     // Blank Object
@@ -24,8 +31,6 @@ public class Post {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     public String getTitle() {
         return title;

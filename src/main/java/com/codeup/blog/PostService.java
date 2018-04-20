@@ -1,5 +1,6 @@
 package com.codeup.blog;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -7,19 +8,21 @@ import java.util.List;
 
 @Service
 public class PostService {
-    private List<Post> posts;
+    @Autowired
+    private final PostRepository posts;
 
-    public PostService() {
-        posts = new ArrayList<Post>();
+    @Autowired
+    public PostService(PostRepository posts) {
+        this.posts = posts;
         createPosts();
     }
 
-    public List<Post> findAll() {
+    public PostRepository findAll() {
         return posts;
     }
 
     public Post findOne(Long id) {
-        for(Post post: posts) {
+        for(Post post: posts.findAll()) {
             if(post.getId().equals(id)) {
                 return post;
             }
@@ -29,7 +32,7 @@ public class PostService {
 
     public Long getNextId() {
         Long id = Long.parseLong("0");
-        for(Post post: posts) {
+        for(Post post: posts.findAll()) {
             if(post.getId()>id) {
                 id = post.getId();
             }
@@ -37,13 +40,9 @@ public class PostService {
         return id+1;
     }
 
-    public Post save(Post post) {
-            posts.add(post);
-            return post;
-    }
 
     public Post edit(Post post) {
-        for(Post p: posts) {
+        for(Post p: posts.findAll()) {
             if(p.getId().equals(post.getId())) {
                     p.setBody(post.getBody());
                     p.setTitle(post.getTitle());
@@ -54,12 +53,12 @@ public class PostService {
 
     // Testing posts!
     private void createPosts() {
-        posts.add(new Post(Long.parseLong("1"),"This is thde title","this is the body"));
-        posts.add(new Post(Long.parseLong("2"),"This is the title","this is the body"));
-        posts.add(new Post(Long.parseLong("3"),"This is the stitle","this is dthe body"));
-        posts.add(new Post(Long.parseLong("4"),"This is thed title","this is thes body"));
-        posts.add(new Post(Long.parseLong("5"),"This is the title","this is the body"));
-        posts.add(new Post(Long.parseLong("6"),"This is dthe title","this is the boddy"));
+        posts.save(new Post(Long.parseLong("1"),"This is thde title","this is the body"));
+        posts.save(new Post(Long.parseLong("2"),"This is the title","this is the body"));
+        posts.save(new Post(Long.parseLong("3"),"This is the stitle","this is dthe body"));
+        posts.save(new Post(Long.parseLong("4"),"This is thed title","this is thes body"));
+        posts.save(new Post(Long.parseLong("5"),"This is the title","this is the body"));
+        posts.save(new Post(Long.parseLong("6"),"This is dthe title","this is the boddy"));
 
     }
 

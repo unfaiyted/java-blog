@@ -10,43 +10,42 @@ import java.util.List;
 
 @Controller
 public class PostController {
-    private final PostService postService;
+    private final PostRepository postDao;
 
-    public PostController(PostService postService) {
-        this.postService = postService;
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
     }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
     public String index(Model model) {
 
-        model.addAttribute("posts", postService.findAll());
+        model.addAttribute("posts", postDao.findAll());
 
-        return "posts/index";
+        return "/posts/index";
     }
 
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
     public String view(@PathVariable Long id, Model model) {
-        Post post = postService.findOne(id);
 
-        if (post != null) {
-            model.addAttribute("post", post);
-            return "posts/show";
-        } else {
-            return index(model);
+        if(postDao.findById(id).isPresent()) {
+            model.addAttribute("post", postDao.findById(id).get());
+            return "/posts/show";
         }
+
+        return "redirect:/posts";
     }
 
     @RequestMapping(path = "/posts/{id}/edit", method = RequestMethod.GET)
     public String edit(@PathVariable Long id, Model model) {
-        Post post = postService.findOne(id);
 
-        if (post != null) {
+        if(postDao.findById(id).isPresent()) {
             model.addAttribute("action", "");
-            model.addAttribute("post", post);
-            return "posts/edit";
-        } else {
-            return index(model);
+            model.addAttribute("post", postDao.findById(id).get());
+            return "/posts/edit";
         }
+
+        return "redirect:/posts";
+
     }
 
     @PostMapping("/posts/{id}/edit")
@@ -54,11 +53,11 @@ public class PostController {
         // Post post = postService.findOne(id);
         if (post != null) {
 
-            postService.edit(post);
+            postDao.save(post);
             // model.addAttribute("edit", true);
             model.addAttribute("action", "/posts/"+ id +"/edit");
             model.addAttribute("post", post);
-            return "posts/edit";
+            return "/posts/edit";
         } else {
             return index(model);
         }
@@ -68,17 +67,14 @@ public class PostController {
     public String createGet(Model model) {
         model.addAttribute("action", "/posts/create");
         model.addAttribute("post", new Post());
-        return "posts/create";
+        return "/posts/create";
     }
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post, Model model) {
+        postDao.save(post);
 
-        Long nextId = postService.getNextId();
-        post.setId(nextId);
-        postService.save(post);
-
-        return view(nextId, model);
+        return "redirect:/posts";
     }
 
 
