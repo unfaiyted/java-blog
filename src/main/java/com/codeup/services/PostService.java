@@ -1,10 +1,9 @@
-package com.codeup.blog;
+package com.codeup.services;
 
+import com.codeup.models.Post;
+import com.codeup.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class PostService {
@@ -14,7 +13,6 @@ public class PostService {
     @Autowired
     public PostService(PostRepository posts) {
         this.posts = posts;
-        createPosts();
     }
 
     public PostRepository findAll() {
@@ -51,15 +49,5 @@ public class PostService {
         return null;
     }
 
-    // Testing posts!
-    private void createPosts() {
-        posts.save(new Post(Long.parseLong("1"),"This is thde title","this is the body"));
-        posts.save(new Post(Long.parseLong("2"),"This is the title","this is the body"));
-        posts.save(new Post(Long.parseLong("3"),"This is the stitle","this is dthe body"));
-        posts.save(new Post(Long.parseLong("4"),"This is thed title","this is thes body"));
-        posts.save(new Post(Long.parseLong("5"),"This is the title","this is the body"));
-        posts.save(new Post(Long.parseLong("6"),"This is dthe title","this is the boddy"));
-
-    }
 
 }

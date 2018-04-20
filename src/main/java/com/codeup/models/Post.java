@@ -1,4 +1,6 @@
-package com.codeup.blog;
+package com.codeup.models;
+
+import com.codeup.models.User;
 
 import javax.persistence.*;
 
@@ -13,13 +15,16 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
+    @OneToOne
+    private User owner;
+
     // Blank Object
     public Post() {
 
     }
 
-    public  Post(Long id, String title, String body) {
-        this.id = id;
+    public  Post(User owner, String title, String body) {
+        this.owner = owner;
         this.title = title;
         this.body = body;
     }
@@ -48,5 +53,11 @@ public class Post {
         this.body = body;
     }
 
+    public User getOwner() {
+        return owner;
+    }
 
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
 }

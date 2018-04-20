@@ -1,4 +1,4 @@
-package com.codeup.blog;
+package com.codeup.controllers;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

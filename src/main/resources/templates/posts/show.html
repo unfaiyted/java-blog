@@ -9,6 +9,7 @@
 <div>
     <span th:text="${post.getId()}"></span>
     <span th:text="${post.getTitle()}"></span>
+    <span th:text="${post.getOwner().getEmail()}" />
     <span th:text="${post.getBody()}"></span>
 </div>
 

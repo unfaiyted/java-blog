@@ -1,19 +1,22 @@
-package com.codeup.blog;
+package com.codeup.controllers;
 
+import com.codeup.models.Post;
+import com.codeup.repositories.PostRepository;
+import com.codeup.models.User;
+import com.codeup.repositories.UserRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
 public class PostController {
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
@@ -49,7 +52,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPost(@PathVariable Long id, @ModelAttribute Post post,  Model model) {
+    public String editPost(@PathVariable Long id, @ModelAttribute Post post, Model model) {
         // Post post = postService.findOne(id);
         if (post != null) {
 
@@ -72,10 +75,20 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post, Model model) {
+        User user = userDao.findById(1L).get();
+        post.setOwner(user);
         postDao.save(post);
-
         return "redirect:/posts";
     }
+
+    @RequestMapping("/posts/{id}/delete")
+    public String delete(@PathVariable Long id) {
+            postDao.delete(postDao.findById(id).get());
+            return "redirect:/posts";
+
+    }
+
+
 
 
 

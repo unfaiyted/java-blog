@@ -1,10 +1,8 @@
-package com.codeup.blog;
+package com.codeup.repositories;
 
-import org.springframework.data.jpa.repository.Query;
+import com.codeup.models.Post;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 public interface PostRepository extends CrudRepository<Post, Long> {
