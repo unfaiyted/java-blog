@@ -27,6 +27,16 @@ public class PostService {
         return null;
     }
 
+    public Long getNextId() {
+        Long id = Long.parseLong("0");
+        for(Post post: posts) {
+            if(post.getId()>id) {
+                id = post.getId();
+            }
+        }
+        return id+1;
+    }
+
     public Post save(Post post) {
             posts.add(post);
             return post;

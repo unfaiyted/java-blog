@@ -6,6 +6,11 @@ public class Post {
     private String title;
     private String body;
 
+    // Blank Object
+    public Post() {
+
+    }
+
     public  Post(Long id, String title, String body) {
         this.id = id;
         this.title = title;
@@ -19,6 +24,8 @@ public class Post {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public String getTitle() {
         return title;
@@ -35,4 +42,6 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
+
 }

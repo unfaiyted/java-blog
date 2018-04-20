@@ -26,27 +26,30 @@ public class PostController {
 
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
     public String view(@PathVariable Long id, Model model) {
-
-
-
         Post post = postService.findOne(id);
 
         if (post != null) {
             model.addAttribute("post", post);
             return "posts/show";
         } else {
-            return "posts/index";
+            return index(model);
         }
     }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
-    public String createGet() {
-        return "Form view for creating a post ";
+    public String createGet(Model model) {
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost() {
-        return "Pages submitted to create a post ";
+    public String createPost(@ModelAttribute Post post, Model model) {
+
+        Long nextId = postService.getNextId();
+        post.setId(nextId);
+        postService.save(post);
+
+        return view(nextId, model);
     }
 }
 
