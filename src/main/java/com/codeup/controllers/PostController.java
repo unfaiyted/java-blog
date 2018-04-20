@@ -1,9 +1,9 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Post;
-import com.codeup.repositories.PostRepository;
+import com.codeup.repositories.Posts;
 import com.codeup.models.User;
-import com.codeup.repositories.UserRepository;
+import com.codeup.repositories.Users;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class PostController {
-    private final PostRepository postDao;
-    private final UserRepository userDao;
+    private final Posts postDao;
+    private final Users userDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(Posts postDao, Users userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
     }

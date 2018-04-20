@@ -27,6 +27,18 @@ public class User {
     @Column
     private LocalDateTime lastLoginDate;
 
+    public User(User copy) {
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+
+        firstName = copy.firstName;
+        lastName = copy.lastName;
+
+        createdAt = copy.createdAt;
+        lastLoginDate = copy.lastLoginDate;
+    }
 
     public Long getId() {
         return id;

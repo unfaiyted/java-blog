@@ -1,21 +1,21 @@
 package com.codeup.services;
 
 import com.codeup.models.Post;
-import com.codeup.repositories.PostRepository;
+import com.codeup.repositories.Posts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PostService {
     @Autowired
-    private final PostRepository posts;
+    private final Posts posts;
 
     @Autowired
-    public PostService(PostRepository posts) {
+    public PostService(Posts posts) {
         this.posts = posts;
     }
 
-    public PostRepository findAll() {
+    public Posts findAll() {
         return posts;
     }
 
