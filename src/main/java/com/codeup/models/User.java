@@ -27,6 +27,10 @@ public class User {
     @Column
     private LocalDateTime lastLoginDate;
 
+
+    public User() {
+    }
+
     public User(User copy) {
         id = copy.id;
         email = copy.email;
