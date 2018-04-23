@@ -3,6 +3,8 @@ package com.codeup.blog.models;
 import com.codeup.blog.models.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 // Post object
 @Entity
@@ -10,8 +12,13 @@ import javax.persistence.*;
 public class Post {
     @Id @GeneratedValue
     private Long id;
+
+    @NotBlank(message = "Post must contain a title.")
+    @Size(min = 5, message = "Post titles must be at least 5 characters long.")
     @Column(nullable = false, length = 255)
     private String title;
+    @NotBlank(message = "Posts must have content.")
+    @Size(min = 6, message = "The post must be longer.")
     @Column(nullable = false)
     private String body;
 

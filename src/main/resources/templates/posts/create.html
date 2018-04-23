@@ -1,14 +1,18 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Post Create</title>
+<head th:replace="partials/main :: header">
+    <meta charset="UTF-8" />
+    <title>Home</title>
 </head>
 <body>
+
+<div th:replace="partials/main :: navbar" />
 
 <div th:include="partials/posts/forms :: post">
 
 </div>
 
+<div th:replace="partials/main :: footer" />
 </body>
+</html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Show Post</title>
+<head th:replace="partials/main :: header">
+    <meta charset="UTF-8" />
+    <title>Home</title>
 </head>
 <body>
+
+<div th:replace="partials/main :: navbar" />
 
 <div>
     <span th:text="${post.getId()}"></span>
@@ -13,5 +15,7 @@
     <span th:text="${post.getBody()}"></span>
 </div>
 
+
+<div th:replace="partials/main :: footer" />
 </body>
 </html>

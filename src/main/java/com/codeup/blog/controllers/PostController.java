@@ -5,11 +5,13 @@ import com.codeup.blog.models.User;
 import com.codeup.blog.repositories.Posts;
 import com.codeup.blog.repositories.Users;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -41,8 +43,6 @@ public class PostController {
 
         return "redirect:/posts";
     }
-
-
 
     @RequestMapping(path = "/posts/{id}/edit", method = RequestMethod.GET)
     public String edit(@PathVariable Long id, Model model) {
@@ -78,11 +78,28 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post, Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setOwner(user);
-        postDao.save(post);
-        return "redirect:/posts";
+    public String createPost(@Valid Post post, Errors validation, Model model) {
+
+        // Custom evaluation
+        if (post.getTitle().endsWith("?")) {
+            validation.rejectValue(
+                    "title",
+                    "post.title",
+                    "You can't be unsure about your title!"
+            );
+        }
+
+
+        if(validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("post", post);
+            return "/posts/create";
+        } else {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            post.setOwner(user);
+            postDao.save(post);
+            return "redirect:/posts";
+        }
     }
 
     @RequestMapping("/posts/{id}/delete")

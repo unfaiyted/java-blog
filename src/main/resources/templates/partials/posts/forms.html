@@ -3,9 +3,11 @@
         <form th:action="${action}" method="post" th:object="${post}">
             Title:
             <input th:field="*{title}" />
+            <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
             <br />
             Description:
             <input th:field="*{body}" />
+            <p th:if="${#fields.hasErrors('body')}" th:errors="*{body}" />
             <br />
             <input type="hidden" th:field="*{id}" th:value="*{id}"/>
             <input type="submit" />
