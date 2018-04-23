@@ -18,14 +18,14 @@ public class AuthenticationController {
     public String showLoginForm(Model model) {
         User user = new User();
 
-        Authentication token = SecurityContextHolder.getContext().getAuthentication();
+        //Authentication token = SecurityContextHolder.getContext().getAuthentication();
 
         // not logged in
         model.addAttribute("user",user);
-        if (token instanceof AnonymousAuthenticationToken) return "/users/login";
+        return "/users/login";
+        // if (token instanceof AnonymousAuthenticationToken)
 
-        // homepage
-        return String.format("redirect:%s", "/");
+
 
     }
 

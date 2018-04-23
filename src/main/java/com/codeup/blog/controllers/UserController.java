@@ -24,7 +24,7 @@ public class UserController {
     private Users users;
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
+
     public UserController(Users users, PasswordEncoder passwordEncoder) {
         this.users = users;
         this.passwordEncoder = passwordEncoder;
@@ -46,17 +46,5 @@ public class UserController {
         return "redirect:/login";
     }
 
-
-    private void authenticate(User user) {
-        // Notice how we're using an empty list for the roles
-        UserDetails userDetails = new UserWithRoles(user);
-        Authentication auth = new UsernamePasswordAuthenticationToken(
-                userDetails,
-                userDetails.getPassword(),
-                userDetails.getAuthorities()
-        );
-        SecurityContext context = SecurityContextHolder.getContext();
-        context.setAuthentication(auth);
-    }
 
 }
