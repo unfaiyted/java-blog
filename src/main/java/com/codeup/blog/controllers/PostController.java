@@ -1,12 +1,13 @@
-package com.codeup.controllers;
+package com.codeup.blog.controllers;
 
-import com.codeup.models.Post;
-import com.codeup.repositories.Posts;
-import com.codeup.models.User;
-import com.codeup.repositories.Users;
+import com.codeup.blog.models.Post;
+import com.codeup.blog.models.User;
+import com.codeup.blog.repositories.Posts;
+import com.codeup.blog.repositories.Users;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 
 @Controller
@@ -14,6 +15,7 @@ public class PostController {
     private final Posts postDao;
     private final Users userDao;
 
+    @Autowired
     public PostController(Posts postDao, Users userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
@@ -46,7 +48,6 @@ public class PostController {
             model.addAttribute("post", postDao.findById(id).get());
             return "/posts/edit";
         }
-
         return "redirect:/posts";
 
     }

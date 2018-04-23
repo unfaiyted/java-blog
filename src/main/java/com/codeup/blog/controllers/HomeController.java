@@ -1,18 +1,22 @@
-package com.codeup.controllers;
+package com.codeup.blog.controllers;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import com.codeup.blog.models.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.concurrent.ThreadLocalRandom;
-
 
 @Controller
 public class HomeController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "home";
+
     }
 
 

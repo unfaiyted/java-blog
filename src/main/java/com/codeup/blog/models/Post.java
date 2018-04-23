@@ -1,6 +1,6 @@
-package com.codeup.models;
+package com.codeup.blog.models;
 
-import com.codeup.models.User;
+import com.codeup.blog.models.User;
 
 import javax.persistence.*;
 

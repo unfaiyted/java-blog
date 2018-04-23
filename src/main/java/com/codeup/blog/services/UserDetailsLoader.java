@@ -1,18 +1,18 @@
-package com.codeup.services;
+package com.codeup.blog.services;
 
-import com.codeup.models.UserWithRoles;
+import com.codeup.blog.models.User;
+import com.codeup.blog.models.UserWithRoles;
+import com.codeup.blog.repositories.Users;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import com.codeup.repositories.Users;
-import com.codeup.models.User;
 
 
 @Service
 public class UserDetailsLoader implements UserDetailsService {
     private final Users users;
-
 
     public UserDetailsLoader(Users users) {
                 this.users = users;
@@ -20,7 +20,7 @@ public class UserDetailsLoader implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = users.findByUserName(username);
+        User user = users.findByUsername(username);
 
         if(user == null) {
             throw new UsernameNotFoundException("User could not be found for " + username);
@@ -29,4 +29,6 @@ public class UserDetailsLoader implements UserDetailsService {
         return new UserWithRoles(user);
 
     }
+
+
 }

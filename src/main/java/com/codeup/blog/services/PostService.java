@@ -1,7 +1,7 @@
-package com.codeup.services;
+package com.codeup.blog.services;
 
-import com.codeup.models.Post;
-import com.codeup.repositories.Posts;
+import com.codeup.blog.models.Post;
+import com.codeup.blog.repositories.Posts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

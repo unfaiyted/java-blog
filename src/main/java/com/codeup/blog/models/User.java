@@ -1,10 +1,13 @@
-package com.codeup.models;
+package com.codeup.blog.models;
+
+import org.hibernate.annotations.DiscriminatorFormula;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
+@DiscriminatorFormula("'GenericUser'")
 public class User {
     @Id @GeneratedValue
     private Long id;
@@ -23,13 +26,12 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
     @Column
     private LocalDateTime lastLoginDate;
 
 
-    public User() {
-    }
+    public User() { }
 
     public User(User copy) {
         id = copy.id;
