@@ -13,12 +13,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class HomeController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String index(Model model) {
-        model.addAttribute("user", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    public String index() {
         return "home";
 
     }
-
 
     @RequestMapping(path = "/roll-dice", method = RequestMethod.GET)
     public String rollMain() {

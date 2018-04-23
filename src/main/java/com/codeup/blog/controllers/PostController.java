@@ -5,6 +5,8 @@ import com.codeup.blog.models.User;
 import com.codeup.blog.repositories.Posts;
 import com.codeup.blog.repositories.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +42,8 @@ public class PostController {
         return "redirect:/posts";
     }
 
+
+
     @RequestMapping(path = "/posts/{id}/edit", method = RequestMethod.GET)
     public String edit(@PathVariable Long id, Model model) {
 
@@ -51,8 +55,7 @@ public class PostController {
         return "redirect:/posts";
 
     }
-
-    @PostMapping("/posts/{id}/edit")
+    @PostMapping(path = "/posts/{id}/edit")
     public String editPost(@PathVariable Long id, @ModelAttribute Post post, Model model) {
         // Post post = postService.findOne(id);
         if (post != null) {
@@ -76,7 +79,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post, Model model) {
-        User user = userDao.findById(1L).get();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setOwner(user);
         postDao.save(post);
         return "redirect:/posts";
