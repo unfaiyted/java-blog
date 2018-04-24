@@ -1,7 +1,8 @@
 package com.codeup.blog.controllers;
 
-
-import org.springframework.beans.factory.annotation.Value;
+import com.codeup.blog.models.Document;
+import com.codeup.blog.services.DocumentUploadService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,39 +10,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-
 @Controller
 public class FileUploadController {
+    private final DocumentUploadService docDao;
 
-        @Value("${file-upload-path}")
-        private String uploadPath;
+    @Autowired
+    public FileUploadController(DocumentUploadService docDao) {
+        this.docDao = docDao;
+    }
 
-        @GetMapping("/fileupload")
-        public String showUploadFileForm() {
+    @GetMapping("/fileupload")
+     public String showUploadFileForm() {
             return "/fileupload";
-        }
+    }
 
-        @PostMapping("/fileupload")
-        public String saveFile(
-                @RequestParam(name = "file") MultipartFile uploadedFile,
-                Model model) {
+    @PostMapping("/fileupload")
+    public String saveFile( @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
+        Document upload = docDao.upload(uploadedFile);
+        model.addAttribute("message",upload.getFileName() + " uploaded successfully.");
+        return "/fileupload";
+    }
 
-            String filename = uploadedFile.getOriginalFilename();
-            String filepath = Paths.get(uploadPath, filename).toString();
 
-            File destinationFile = new File(filepath);
+    @GetMapping("/multiupload")
+    public String showMultiUpload() {
 
-            try {
-                uploadedFile.transferTo(destinationFile);
-                model.addAttribute("message", "File successfully uploaded");
-            } catch( IOException e) {
-                    e.printStackTrace();
-                    model.addAttribute("message", "Snap! Something went wrong." + e);
-            }
-            return "/fileupload";
-        }
+        return "/multiUpload";
+    }
 
 }
