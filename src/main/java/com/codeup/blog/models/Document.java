@@ -1,12 +1,15 @@
 package com.codeup.blog.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name="files")
+@Table(name="documents")
 public class Document {
         @Id @GeneratedValue
         private Long id;
@@ -18,18 +21,31 @@ public class Document {
         @Column(nullable = false)
         private String extension;
 
+        @Column(nullable = false)
+        private String directory;
+
         @Column
         private Long fileSize;
 
         @Column(nullable = false)
         private LocalDateTime createdAt = LocalDateTime.now();
 
+        @ManyToOne
+        @JsonBackReference
+        private Post post;
+
         public Document() {
         }
 
-        public Document(String fileName, String extension, Long fileSize) {
+
+        public Document(String fullpath, Long fileSize) {
+            // TODO: break full path into parts
+        }
+
+        public Document(String fileName, String extension, String directory, Long fileSize) {
             this.fileName = fileName;
             this.extension = extension;
+            this.extension = directory;
             this.fileSize = fileSize;
             this.createdAt = LocalDateTime.now();
 
@@ -53,6 +69,11 @@ public class Document {
 
         public String getExtension() {
             return extension;
+        }
+
+
+        public String getFullPath() {
+            return  directory + "/" + fileName;
         }
 
         public void setExtension(String extension) {

@@ -1,11 +1,14 @@
 package com.codeup.blog.models;
 
 import com.codeup.blog.models.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.print.Doc;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 // Post object
 @Entity
@@ -26,10 +29,13 @@ public class Post {
     @Column(length = 255)
     private String image;
 
-
     @ManyToOne
     @JsonManagedReference
     private User owner;
+
+    @OneToMany(mappedBy = "post")
+    @JsonManagedReference
+    private List<Document> pictures;
 
     // Blank Object
     public Post() {

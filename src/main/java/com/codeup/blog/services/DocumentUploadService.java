@@ -19,7 +19,7 @@ public class DocumentUploadService {
     private final Documents documents;
 
     @Value("${file-upload-path}")
-    private String uploadPath;
+    private String storeDirectory;
 
     @Autowired
     public DocumentUploadService(Documents documents) {
@@ -28,14 +28,14 @@ public class DocumentUploadService {
 
     public Document upload(MultipartFile uploadedFile) {
        String filename = uploadedFile.getOriginalFilename();
-       String filepath = Paths.get(uploadPath, filename).toString();
+       String filepath = Paths.get(storeDirectory, filename).toString();
 
        File destinationFile = new File(filepath);
 
            // File successfully uploaded.
            try {
                uploadedFile.transferTo(destinationFile);
-               return new Document(filename,getFileExtension(destinationFile),uploadedFile.getSize());
+               return new Document(filename,getFileExtension(destinationFile), storeDirectory ,uploadedFile.getSize());
            } catch( IOException e) { //Upload Failed
                e.printStackTrace();
                return null;
