@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -27,32 +28,35 @@ public class DocumentUploadService {
     }
 
     public Document upload(MultipartFile uploadedFile) {
+
        String filename = uploadedFile.getOriginalFilename();
-       String filepath = Paths.get(storeDirectory, filename).toString();
+       String ext = getFileExtension(filename);
+       UUID id = UUID.randomUUID();
+
+       String filepath = Paths.get(storeDirectory, id.toString() + "."+ ext).toString();
 
        File destinationFile = new File(filepath);
 
            // File successfully uploaded.
            try {
                uploadedFile.transferTo(destinationFile);
-               return new Document(filename,getFileExtension(destinationFile), storeDirectory ,uploadedFile.getSize());
+               return new Document(id.toString() + "." + ext ,ext, storeDirectory ,uploadedFile.getSize());
            } catch( IOException e) { //Upload Failed
                e.printStackTrace();
                return null;
            }
     }
 
-    //     public List<Document> upload(List<Document> documents) {
-    //              for(Documents document: documents){
-    //                  upload(MultipartFile uploadFile);
-    //             }
+    private static String getFileExtension(String fileName) {
+        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+            return fileName.substring(fileName.lastIndexOf(".")+1);
+        else return "";
+    }
 
-        private static String getFileExtension(File file) {
-            String fileName = file.getName();
-            if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-                return fileName.substring(fileName.lastIndexOf(".")+1);
-            else return "";
-        }
+    private static String getFileExtension(File file) {
+        String fileName = file.getName();
+        return getFileExtension(fileName);
+    }
 
 }
 

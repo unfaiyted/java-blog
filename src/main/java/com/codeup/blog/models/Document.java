@@ -37,7 +37,6 @@ public class Document {
         public Document() {
         }
 
-
         public Document(String fullpath, Long fileSize) {
             // TODO: break full path into parts
         }

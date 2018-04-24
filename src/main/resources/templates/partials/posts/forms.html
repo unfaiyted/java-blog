@@ -9,11 +9,7 @@
             <input th:field="*{body}" />
             <p th:if="${#fields.hasErrors('body')}" th:errors="*{body}" />
             <br />
-            <label th:for="*{image}">Image</label>
-            <input th:field="*{image}" type="file" />
-            <p th:if="${#fields.hasErrors('image')}" th:errors="*{image}" />
-            <br />
             <input type="hidden" th:field="*{id}" th:value="*{id}"/>
             <input type="submit" />
         </form>
-    </div>
+</div>
