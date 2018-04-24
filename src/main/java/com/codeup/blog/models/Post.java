@@ -1,6 +1,7 @@
 package com.codeup.blog.models;
 
 import com.codeup.blog.models.User;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -22,18 +23,29 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
-    @OneToOne
+    @Column(length = 255)
+    private String image;
+
+
+    @ManyToOne
+    @JsonManagedReference
     private User owner;
 
     // Blank Object
     public Post() {
-
     }
 
     public  Post(User owner, String title, String body) {
         this.owner = owner;
         this.title = title;
         this.body = body;
+    }
+
+    public  Post(User owner, String title, String body, String image) {
+        this.owner = owner;
+        this.title = title;
+        this.body = body;
+        this.image = image;
     }
 
     public Long getId() {
@@ -67,4 +79,9 @@ public class Post {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
+    
 }

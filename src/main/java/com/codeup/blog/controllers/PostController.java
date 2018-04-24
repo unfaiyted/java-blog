@@ -12,6 +12,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -56,18 +58,16 @@ public class PostController {
 
     }
     @PostMapping(path = "/posts/{id}/edit")
-    public String editPost(@PathVariable Long id, @ModelAttribute Post post, Model model) {
-        // Post post = postService.findOne(id);
-        if (post != null) {
-
-            postDao.save(post);
-            // model.addAttribute("edit", true);
-            model.addAttribute("action", "/posts/"+ id +"/edit");
-            model.addAttribute("post", post);
-            return "/posts/edit";
-        } else {
-            return index(model);
-        }
+    public String editPost(@PathVariable Long id, @Valid Post post, Errors validation, Model model) {
+            if(validation.hasErrors()) {
+                model.addAttribute("errors", validation);
+                model.addAttribute("post", post);
+                return "/posts/" + id + "/edit";
+            } else {
+                post.setOwner(postDao.findById(id).get().getOwner());
+                postDao.save(post);
+                return "redirect:/posts";
+            }
     }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
@@ -109,10 +109,19 @@ public class PostController {
 
     }
 
+    @GetMapping("/posts.json")
+    public @ResponseBody List<Post> viewAllPostsInJSON() {
 
+        List<Post> p = new ArrayList<>();
+        postDao.findAll().forEach(p::add);
 
+        return p;
+    }
 
-
+    @GetMapping("/posts/ajax")
+    public String viewAllPostsWithAjax() {
+        return "/posts/ajax";
+    }
 
 }
 

@@ -1,9 +1,12 @@
 package com.codeup.blog.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DiscriminatorFormula;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -22,13 +25,19 @@ public class User {
 
     @Column(nullable = false, length = 200)
     private String email;
+
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
     @Column
     private LocalDateTime lastLoginDate;
+
+    @OneToMany(mappedBy = "owner")
+    @JsonBackReference
+    private List<Post> posts;
 
 
     public User() { }

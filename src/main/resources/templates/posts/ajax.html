@@ -8,15 +8,12 @@
 
 <div th:replace="partials/main :: navbar" />
 
+<h1>Posts</h1>
+<div id="posts"></div>
 
-<div th:each="post : ${posts}">
-    <span th:text="${post.getId()}"></span>
-    <p th:text="${post.getTitle()}" />
-    <p th:text="${post.getOwner().getUsername()}" />
-    <a th:href="@{/posts/{id}/delete(id=${post.getId()})}">[Delete]</a>
-</div>
-
+<!-- include the JS file with the AJAX request -->
 
 <div th:replace="partials/main :: footer" />
+<script src="/js/posts.js"></script>
 </body>
 </html>

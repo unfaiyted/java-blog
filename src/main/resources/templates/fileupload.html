@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/main :: header">
+    <meta charset="UTF-8" />
+    <title>Home</title>
+</head>
+<body>
+
+<div th:replace="partials/main :: navbar" />
+
+<div>
+    <p th:text="${message}" />
+</div>
+
+<form th:fragment="fileupload" th:action="@{/fileupload(${_csrf.parameterName}=${_csrf.token})}"
+        method="post" enctype="multipart/form-data">
+    <label for="file">Upload a file!</label>
+    <input id="file" name="file" type="file" />
+    <br />
+    <input type="submit" value="upload" />
+</form>
+
+<div th:replace="partials/main :: footer" />
+<script src="/js/posts.js"></script>
+</body>
+</html>

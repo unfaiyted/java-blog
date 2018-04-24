@@ -8,14 +8,8 @@
 
 <div th:replace="partials/main :: navbar" />
 
-
-<div th:each="post : ${posts}">
-    <span th:text="${post.getId()}"></span>
-    <p th:text="${post.getTitle()}" />
-    <p th:text="${post.getOwner().getUsername()}" />
-    <a th:href="@{/posts/{id}/delete(id=${post.getId()})}">[Delete]</a>
-</div>
-
+<h1>The server done goofed.</h1>
+<p>Oops.</p>
 
 <div th:replace="partials/main :: footer" />
 </body>
