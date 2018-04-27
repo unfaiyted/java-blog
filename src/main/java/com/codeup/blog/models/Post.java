@@ -1,8 +1,7 @@
 package com.codeup.blog.models;
 
 import com.codeup.blog.models.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import javax.print.Doc;
@@ -23,35 +22,32 @@ public class Post {
     private String title;
     @NotBlank(message = "Posts must have content.")
     @Size(min = 6, message = "The post must be longer.")
-    @Column(nullable = false)
+    @Column(nullable = false,  columnDefinition="TEXT")
     private String body;
 
-    @Column(length = 255)
-    private String image;
-
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference(value = "owner-of")
     private User owner;
 
     @OneToMany(mappedBy = "post")
-    @JsonManagedReference
-    private List<Document> pictures;
+    @JsonBackReference(value = "post-documents")
+    private List<Document> documents;
 
     // Blank Object
     public Post() {
     }
 
-    public  Post(User owner, String title, String body) {
+    public Post(User owner, String title, String body) {
         this.owner = owner;
         this.title = title;
         this.body = body;
     }
 
-    public  Post(User owner, String title, String body, String image) {
+    public Post(User owner, String title, String body, List<Document> documents) {
         this.owner = owner;
         this.title = title;
         this.body = body;
-        this.image = image;
+        this.documents = documents;
     }
 
     public Long getId() {
@@ -86,8 +82,18 @@ public class Post {
         this.owner = owner;
     }
 
-    public String getImage() { return image; }
+    @JsonProperty
+    public List<Document> getDocuments() { return documents; }
 
-    public void setImage(String image) { this.image = image; }
-    
+    public void setDocuments(List<Document> documents) {
+
+        for(Document document : documents) {
+            document.setPost(this);
+        }
+        this.documents = documents;
+    }
+
+    public void addDocument(Document document) {
+        this.documents.add(document);
+    }
 }

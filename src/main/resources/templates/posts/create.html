@@ -9,13 +9,19 @@
 
 <div th:replace="partials/main :: navbar" />
 
-<div th:include="partials/posts/forms :: post">
+<div class="container mx-auto p-2 m-2">
+    <div class="row">
+        <div class="col-lg-8 col-12"><div th:include="partials/posts/forms :: post" /></div>
+        <div class="col-4">
+            <div th:replace="partials/documents :: uploader" />
+            <div th:replace="partials/documents :: associatedUploads" />
+        </div>
+    </div>
 
 </div>
 
-<div th:replace="partials/documents :: uploader" />
-
 <div th:replace="partials/main :: footer" />
 <script src="/js/upload.js"></script>
+
 </body>
 </html>

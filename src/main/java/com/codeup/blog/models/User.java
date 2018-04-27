@@ -2,6 +2,8 @@ package com.codeup.blog.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.DiscriminatorFormula;
 
 import javax.persistence.*;
@@ -22,7 +24,6 @@ public class User {
     @Column(nullable = false, length = 35)
     private String username;
 
-
     @Column(nullable = false, length = 200)
     private String email;
 
@@ -36,7 +37,7 @@ public class User {
     private LocalDateTime lastLoginDate;
 
     @OneToMany(mappedBy = "owner")
-    @JsonBackReference
+    @JsonManagedReference(value ="posts-owned")
     private List<Post> posts;
 
 

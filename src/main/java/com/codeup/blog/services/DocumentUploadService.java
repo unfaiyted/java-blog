@@ -10,13 +10,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.UUID;
-
 
 @Service
 public class DocumentUploadService {
-
     private final Documents documents;
 
     @Value("${file-upload-path}")
@@ -40,7 +37,8 @@ public class DocumentUploadService {
            // File successfully uploaded.
            try {
                uploadedFile.transferTo(destinationFile);
-               return new Document(id.toString() + "." + ext ,ext, storeDirectory ,uploadedFile.getSize());
+                 Document uploadedDoc = new Document(id.toString() + "." + ext ,ext ,uploadedFile.getSize());
+               return uploadedDoc;
            } catch( IOException e) { //Upload Failed
                e.printStackTrace();
                return null;
@@ -48,15 +46,15 @@ public class DocumentUploadService {
     }
 
     private static String getFileExtension(String fileName) {
-        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-            return fileName.substring(fileName.lastIndexOf(".")+1);
+        if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+            return fileName.substring(fileName.lastIndexOf(".") + 1);
         else return "";
     }
 
     private static String getFileExtension(File file) {
-        String fileName = file.getName();
-        return getFileExtension(fileName);
-    }
+            String fileName = file.getName();
+            return getFileExtension(fileName);
+        }
 
 }
 

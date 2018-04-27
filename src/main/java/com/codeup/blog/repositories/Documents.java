@@ -8,9 +8,8 @@ package com.codeup.blog.repositories;
 @Repository
 public interface Documents extends CrudRepository<Document, Long> {
 
-
-
         @Query("Select max(d.id) FROM Document d")
         Long lastId();
+
 
 }

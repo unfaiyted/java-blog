@@ -10,7 +10,6 @@ import java.util.List;
 public interface Posts extends CrudRepository<Post, Long> {
     Post findByTitle(String title);
 
-
     //@Query("Select p from posts p where p.id=?1")
    //Optional<Post> findById(Long id);
 

@@ -21,8 +21,7 @@ public class PostService {
     public Posts findAll() {
         return posts;
     }
-
-
+    
     public Post findOne(Long id) {
         for(Post post: posts.findAll()) {
             if(post.getId().equals(id)) {
@@ -41,7 +40,6 @@ public class PostService {
         }
         return id+1;
     }
-
 
     public Post edit(Post post) {
         for(Post p: posts.findAll()) {

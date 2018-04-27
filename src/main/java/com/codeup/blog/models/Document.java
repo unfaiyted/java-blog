@@ -1,12 +1,11 @@
 package com.codeup.blog.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-
 
 @Entity
 @Table(name="documents")
@@ -21,7 +20,8 @@ public class Document {
         @Column(nullable = false)
         private String extension;
 
-        @Column(nullable = false)
+        @Column
+        @Value("${file-upload-path}")
         private String directory;
 
         @Column
@@ -31,7 +31,7 @@ public class Document {
         private LocalDateTime createdAt = LocalDateTime.now();
 
         @ManyToOne
-        @JsonBackReference
+        @JsonManagedReference
         private Post post;
 
         public Document() {
@@ -41,10 +41,16 @@ public class Document {
             // TODO: break full path into parts
         }
 
-        public Document(String fileName, String extension, String directory, Long fileSize) {
+        public Document(Document copy) {
+            this.fileName = copy.fileName;
+            this.extension = copy.extension;
+            this.fileSize = copy.fileSize;
+            this.createdAt = copy.createdAt;
+        }
+
+        public Document(String fileName, String extension, Long fileSize) {
             this.fileName = fileName;
             this.extension = extension;
-            this.extension = directory;
             this.fileSize = fileSize;
             this.createdAt = LocalDateTime.now();
 
@@ -70,7 +76,6 @@ public class Document {
             return extension;
         }
 
-
         public String getFullPath() {
             return  directory + "/" + fileName;
         }
@@ -95,4 +100,19 @@ public class Document {
             this.createdAt = createdAt;
         }
 
+        public String getDirectory() {
+            return directory;
+        }
+
+        public void setDirectory(String directory) {
+            this.directory = directory;
+        }
+
+        public Post getPost() {
+            return post;
+        }
+
+        public void setPost(Post post) {
+            this.post = post;
+        }
 }

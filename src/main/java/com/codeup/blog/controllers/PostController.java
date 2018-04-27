@@ -1,17 +1,22 @@
 package com.codeup.blog.controllers;
 
+import com.codeup.blog.models.Document;
 import com.codeup.blog.models.Post;
 import com.codeup.blog.models.User;
+import com.codeup.blog.repositories.Documents;
 import com.codeup.blog.repositories.Posts;
 import com.codeup.blog.repositories.Users;
+import com.codeup.blog.services.DocumentUploadService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +25,13 @@ import java.util.List;
 public class PostController {
     private final Posts postDao;
     private final Users userDao;
+    private final Documents docDao;
 
     @Autowired
-    public PostController(Posts postDao, Users userDao) {
+    public PostController(Posts postDao, Users userDao, Documents docDao) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.docDao = docDao;
     }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
@@ -74,13 +81,30 @@ public class PostController {
     public String createGet(Model model) {
         model.addAttribute("action", "/posts/create");
         model.addAttribute("post", new Post());
+        model.addAttribute("docs", "");
         return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@Valid Post post, Errors validation, Model model) {
+    public String createPost(@Valid Post post, Errors validation, @RequestParam("post-documents") String attach, Model model) throws IOException {
 
-        // Custom evaluation
+        List<Document> documents = new ArrayList<>();
+
+        if(attach.length() > 1) {
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode docs = mapper.readTree(attach);
+
+                for (JsonNode doc : docs) {
+                    System.out.println("found doc");
+                    Document document = new Document(doc.get("fileName").toString(),doc.get("fileName").toString(),doc.get("fileSize").longValue());
+                    documents.add(document);
+                }
+
+        }
+
+        System.out.println("total docs:" + documents.size());
+
+        // Custom evaluation example
         if (post.getTitle().endsWith("?")) {
             validation.rejectValue(
                     "title",
@@ -89,15 +113,17 @@ public class PostController {
             );
         }
 
-
         if(validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("post", post);
+            model.addAttribute("docs", attach);
             return "/posts/create";
         } else {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             post.setOwner(user);
             postDao.save(post);
+            post.setDocuments(documents);
+            docDao.saveAll(post.getDocuments());
             return "redirect:/posts";
         }
     }

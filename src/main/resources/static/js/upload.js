@@ -1,13 +1,62 @@
 $(function() {
+
+    let uploadObj = [];
+
+    // If existing data is found in page.
+    if($(`#post-documents`).val()) {
+        console.log($(`#post-documents`).val());
+        uploadObj = JSON.parse($(`#post-documents`).val());
+    }
+
+    function refreshUploaded() {
+        $('#uploadsList').empty();
+
+        console.log(uploadObj);
+
+        $(`#post-documents`).attr('value',JSON.stringify(uploadObj));
+
+        let i = 1;
+        uploadObj.forEach(({fileName}) => {
+            $('#uploadsList').append(
+                $(`<div>`).append(
+                    $('<div>').text("Image #" + i),
+                $(`<div>`).append(
+                    $(`<img src="/images/${fileName}" class="m-2 rounded-img img-fluid post-upload-img">`)),
+                    $(`<div>`).append(
+                        $(`<button class="btn btn-primary del-btn" data-img="${fileName}">`).text("Delete")
+                    )
+                ));
+            i++;
+        });
+
+        $('.del-btn').click(function () {
+            let cnfrm = confirm("Are you sure?");
+            if (cnfrm) { removeUploaded($(this).data('img')); }
+        });
+    }
+
+    function removeUploaded (fileName) {
+        $.each(uploadObj, function(i){
+            if(uploadObj[i].fileName === fileName) {
+                uploadObj.splice(i,1);
+                return false;
+            }
+        });
+        refreshUploaded();
+    }
+
+    // Gets files uploaded
     $('button.submit-upload').click(function(e) {
         e.preventDefault();
         //Disable submit button
         $(this).prop('disabled',true);
 
+        console.log("test");
+
         var form = document.getElementById("upload-form");
         var formData = new FormData(form);
 
-        // Ajax call for file uploaling
+        // file uploading call
         var ajaxReq = $.ajax({
             url : '../fileupload',
             type : 'POST',
@@ -19,7 +68,7 @@ $(function() {
                 //Get XmlHttpRequest object
                 var xhr = $.ajaxSettings.xhr() ;
 
-                //Set onprogress event handler
+                //Set on progress event handler
                 xhr.upload.onprogress = function(event){
                     var perc = Math.round((event.loaded / event.total) * 100);
                     $('#progressBar').text(perc + '%');
@@ -38,7 +87,15 @@ $(function() {
         // Called on success of file upload
         ajaxReq.done(function(msg) {
             $('#alertMsg').css('color',"blue");
-            $('#alertMsg').text(msg);
+            $('#alertM sg').text("Completed successfully!");
+
+            let last = JSON.parse(msg);
+
+            uploadObj.push(last);
+
+
+            refreshUploaded();
+
             $('input[type=file]').val('');
             $('button[type=submit]').prop('disabled',false);
         });
@@ -51,4 +108,34 @@ $(function() {
             $('button[type=submit]').prop('disabled',false);
         });
     });
+
+    // Start upload refresh on load.
+    refreshUploaded();
+
+
+
+    // Init Editor
+    $(document).ready(function() {
+        $('#body').summernote({
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ],
+            height: 400,
+            minHeight: 300,
+            maxHeight: 800,
+            placeholder: 'type something brilliant, or at least readable.',
+        });
+    });
+
+    $('.custom-file-input').on('change', function() {
+        let fileName = $(this).val().split('\\').pop();
+        $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+
 });

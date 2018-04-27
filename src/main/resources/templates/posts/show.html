@@ -5,14 +5,19 @@
     <title>Home</title>
 </head>
 <body>
-
 <div th:replace="partials/main :: navbar" />
+
+<div id="post-header">
+
+</div>
+
+
 
 <div>
     <span th:text="${post.getId()}"></span>
     <span th:text="${post.getTitle()}"></span>
     <span th:text="${post.getOwner().getEmail()}" />
-    <span th:text="${post.getBody()}"></span>
+    <span th:utext="${post.getBody()}"></span>
 </div>
 
 
