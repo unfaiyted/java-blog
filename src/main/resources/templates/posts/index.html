@@ -8,15 +8,17 @@
 
 <div th:replace="partials/main :: navbar" />
 
+<div class="container">
 
-<div th:each="post : ${posts}">
-    <span th:text="${post.getId()}"></span>
-   <a th:href="@{/posts/} + ${post.getId()}"><span th:text="${post.getTitle()}" /></a>
-    <span th:text="${post.getOwner().getUsername()}" />
-    <a class="btn btn-secondary" th:href="@{/posts/{id}/delete(id=${post.getId()})}">[Delete]</a>
-    <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.getId()})}">[Edit]</a>
+    <div th:each="post : ${posts}">
+        <span th:text="${post.getId()}"></span>
+       <a th:href="@{/posts/} + ${post.getId()}"><span th:text="${post.getTitle()}" /></a>
+        <span th:text="${post.getOwner().getUsername()}" />
+        <a class="btn btn-secondary" th:href="@{/posts/{id}/delete(id=${post.getId()})}">[Delete]</a>
+        <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.getId()})}">[Edit]</a>
+    </div>
+
 </div>
-
 
 <div th:replace="partials/main :: footer" />
 </body>

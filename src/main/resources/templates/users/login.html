@@ -6,7 +6,9 @@
 </head>
 <body>
 
+
 <div th:replace="partials/main :: navbar" />
+<div class="container">
 <h1>Log In</h1>
 <div th:if="${param.error}">
     Invalid Username and Password.
@@ -22,6 +24,7 @@
     <input id="password" name="password" type="password" />
     <input type="submit" value="Log In" />
 </form>
+</div>
 <div th:replace="partials/main :: footer" />
 </body>
 </html>

@@ -14,8 +14,6 @@
     </div>
 </div>
 
-
-
 <form id="upload-form" th:fragment="uploader" th:action="@{./fileupload(${_csrf.parameterName}=${_csrf.token})}"
       method="post" enctype="multipart/form-data">
     <div class="input-group mb-3">
@@ -37,11 +35,6 @@
         <div id="alertMsg"></div>
     </div>
 </form>
-
-
-
-
-
 
 <div th:replace="partials/main :: footer" />
 <script src="/js/posts.js"></script>

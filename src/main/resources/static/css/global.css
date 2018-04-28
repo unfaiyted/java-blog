@@ -47,9 +47,9 @@ html, body {
 .row { margin: 0; padding: 0 }
 
 .container {
-    width: 100%;
     padding: 0;
     margin: 0;
+    min-height: 100vh;
 }
 
 .bg-custom-dark {
@@ -694,5 +694,33 @@ h3:after {
     height: 3px;
     background: #333;
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
+
+}
+
+
+
+.card {
+    background: #fff;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border: 1px solid #cccccc;
+    -webkit-box-shadow: -1px 5px 22px -10px rgba(0,0,0,0.48);
+    -moz-box-shadow: -1px 5px 22px -10px rgba(0,0,0,0.48);
+    box-shadow: -1px 5px 22px -10px rgba(0,0,0,0.48);
+
+
+}
+
+
+.shadow-up {
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border: 1px solid #cccccc;
+    -webkit-box-shadow: -1px 5px 22px -10px rgba(0,0,0,0.48);
+    -moz-box-shadow: -1px 5px 22px -10px rgba(0,0,0,0.48);
+    box-shadow: -1px 5px 22px -10px rgba(0,0,0,0.48);
+
 
 }

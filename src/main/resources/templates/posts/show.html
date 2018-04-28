@@ -9,17 +9,30 @@
 
 <div id="post-header">
 
+
 </div>
+<div class="w-100 post-avatar-container mx-auto text-center">
+    <span class="post-author m-2">Dane L Miller</span>
+    <img src="/img/me.jpeg"  class="post-avatar"/>
+    <span class="post-date m-2">Nov 1, 1987</span></div>
 
+<!--<span th:text="${post.getOwner().getEmail()}" />-->
 
+<div class="container mx-auto">
 
-<div>
-    <span th:text="${post.getId()}"></span>
-    <span th:text="${post.getTitle()}"></span>
-    <span th:text="${post.getOwner().getEmail()}" />
-    <span th:utext="${post.getBody()}"></span>
+    <div id="post-container" class="mx-auto p-4 m-4">
+
+            <h1>  <span th:text="${post.getTitle()}"></span> </h1>
+            <div>
+                <!--<span th:text="${post.getId()}"></span>-->
+                <span th:utext="${post.getBody()}"></span>
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+    </div>
 </div>
-
 
 <div th:replace="partials/main :: footer" />
 </body>

@@ -45,6 +45,13 @@ public class UserController {
         users.save(user);
         return "redirect:/login";
     }
+    
+
+    @GetMapping("/profile")
+    public String loadProfile(Model model) {
+
+        return "users/profile";
+    }
 
 
 }

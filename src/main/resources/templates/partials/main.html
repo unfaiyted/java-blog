@@ -14,15 +14,20 @@
 </head>
 <body>
 <nav th:fragment="navbar" class="navbar  navbar-expand-md bg-faded justify-content-center bg-custom-dark">
-    <a href="/" class="navbar-brand d-flex w-50 mr-auto"><img src="img/logo.png" class="d-inline-block align-center img-logo" alt=""> Home
-    </a>
+    <div class="mr-auto w-50 d-flex ">
+        <div>
+        <a href="/" class="navbar-brand text-uppercase "><img th:src="@{~/img/logo.png}" class="d-inline-block align-center img-logo" alt="">  </a>
+        </div>
+        <div><a href="/" class="nav-link text-uppercase hvr-underline-from-center m-3 p-1" >Home</a></div>
+    </div>
+
     <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
         <ul class="navbar-nav w-100 justify-content-center">
             <li class="nav-item active">
 
             </li>
             <li class="nav-item hvr-underline-from-center">
-                <a class="nav-link my-name" href="#">Dane L. Miller</a>
+                <a class="nav-link my-name" href="./">Dane's DEVeloping Disaster </a>
             </li>
             <li class="nav-item">
 
@@ -30,19 +35,29 @@
         </ul>
         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
             <li class="nav-item  p-2 m-1 ">
-                <a href="/posts/create" class="nav-link text-uppercase hvr-underline-from-center">
+                <a href="/posts/" class="nav-link text-uppercase hvr-underline-from-center">
                     Latest
                 </a>
             </li>
             <li class="nav-item dropdown p-2 m-1 ">
-                <a class="nav-link dropdown-toggle  hvr-underline-from-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Users
+                <a class="nav-link dropdown-toggle  text-uppercase hvr-underline-from-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    User
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="/profile">Profile</a>
                     <a class="dropdown-item" href="/posts/create">Create Post</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/login">Login</a>
+
+                    <div sec:authorize="isAuthenticated()">
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+
+                    <div sec:authorize="isAnonymous()">
+                        <a class="dropdown-item" th:href="@{/login}">Login</a>
+                        <a class="dropdown-item" th:href="@{/sign-up}">Register</a>
+                    </div>
+
+
                 </div>
             </li>
             <li class="nav-item p-1">
@@ -55,13 +70,47 @@
     </div>
 </nav>
 
-<footer th:fragment="footer">
-    <div id="footer">Blog Footer 2018</div>
+<!-- Footer -->
+<footer  th:fragment="footer">
+    <div class="row justify-content-center">
+
+        <nav id="foot-nav" class="navbar  navbar-expand-md bg-faded justify-content-center">
+            <ul class="navbar-nav nav w-100 justify-content-center">
+                <li class="nav-item p-3"><a href="#" class="hvr-underline-from-center">Development</a></li>
+                <li class="nav-item p-3"><a href="#" class="hvr-underline-from-center">Strategy</a></li>
+                <li class="nav-item p-3"><a href="#" class="hvr-underline-from-center">About</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <img th:src="@{~/img/logo.png}" alt="Dane Miller">
+
+    </div>
+    <div class="d-flex  justify-content-center m-3 flex-wrap">
+        <div class="col text-right align-self-baseline">   <a href="#">contact@danemiller.me</a>
+        </div>
+
+        <div class="col text-center">
+            <div class="hvr-outline-in"> <img th:src="@{~/img/logo-fb-black.png}" alt="Facebook"  class="logo-img "></div>
+            <div class="hvr-outline-in"> <img th:src="@{~/img/logo-gplus-black.png}" alt="Google Plus" class="logo-img "></div>
+            <div class="hvr-outline-in"> <img th:src="@{~/img/logo-twitter.png}" alt="Twitter"  class="logo-img "></div>
+            <div class="hvr-outline-in"> <img th:src="@{~/img/logo-reddit.png}" alt="Reddit"  class="logo-img "></div>
+        </div>
+
+        <div class="col text-left align-self-baseline"><span>&copy; Dane L Miller. All rights reserved.</span>
+        </div>
+    </div>
+    </div>
+    </div>
+
 
     <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -72,7 +121,10 @@
 
     </script>
 
+
 </footer>
+
+
 
 
 </body>

@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -65,7 +66,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
-                .logout()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login?logout") // append a query string value
                 /* Pages that can be viewed without having to log in */
                 .and()
