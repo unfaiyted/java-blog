@@ -8,21 +8,36 @@
 
 
 <div th:replace="partials/main :: navbar" />
-<div class="container">
 <h1>Log In</h1>
+<div class="col-4 mx-auto">
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
+</div>
 
-<form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
+<form class="card card-block bg-faded m-3 p-3 col-4 mx-auto" th:action="@{/login}" method="post">
+
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" id="username" aria-describedby="userHelp" placeholder="Enter username">
+            <small id="userHelp" class="form-text text-muted">We'll never share your info with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+        </div>
+        <div class="form-check mb-1">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Stay Logged in.</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+
+
 </form>
 </div>
 <div th:replace="partials/main :: footer" />

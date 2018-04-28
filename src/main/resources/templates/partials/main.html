@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/css/bootstrap-select.min.css">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/global.css">
-    <link type="text/css" rel="stylesheet" href="/css/post.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{~/css/global.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{~/css/post.css}">
 </head>
-<body>
+<body>    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <nav th:fragment="navbar" class="navbar  navbar-expand-md bg-faded justify-content-center bg-custom-dark">
     <div class="mr-auto w-50 d-flex ">
         <div>
@@ -61,7 +62,7 @@
                 </div>
             </li>
             <li class="nav-item p-1">
-                <div class="contact-btn  hvr-pulse"> <a href="#" class="text-uppercase">
+                <div class="contact-btn hvr-pulse"> <a href="#" class="text-uppercase">
                     Contact Me
                 </a></div>
 
