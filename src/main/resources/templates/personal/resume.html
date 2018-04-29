@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/main :: header">
+    <meta charset="UTF-8" />
+    <title>Home</title>
+</head>
+<body>
+
+<div th:replace="partials/main :: navbar" />
+
+<div class="popup" data-popup="popup-1" th:fragment="resume">
+    <div class="popup-inner">
+
+
+        <div class="paper">
+
+            <div class="row">
+
+                <div class="col-4 left-panel">
+
+                    <div class="row">
+                        <img src="images/me.jpeg" class="avatar">
+                    </div>
+
+                    <div class="d-flex flex-column spaced-row">
+                        <h3>Info</h3>
+
+                        <div class="row">
+                            <div class=""><i class="material-icons left-icon">person_pin</i></div>
+                            <div class="info">
+                                <div class="title"><strong>Name</strong></div>
+                                <span class="left-title">Dane Miller</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=""><i class="material-icons left-icon">add_location</i></div>
+                            <div>
+                                <div class="title"> <strong>Address</strong></div>
+                                <span class="left-title">San Antonio, TX,  78109</span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class=""><i class="material-icons left-icon">phone</i></div>
+                            <div>
+                                <div class="title">  <strong>Phone</strong></div>
+                                <span class="left-title">(208).352.0195</span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class=""><i class="material-icons left-icon">email</i></div>
+                            <div>
+                                <div class="title"> <strong>Email</strong></div>
+                                <span class="left-title">contact@danemiller.me</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=""><i class="material-icons left-icon">web</i></div>
+                            <div>
+                                <div class="title">  <strong>Website</strong></div>
+                                <span class="left-title">http://danemiller.me</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex flex-column spaced-row">
+                        <h3 class="resume-side-header">Social</h3>
+
+                        <div><i class="material-icons">person_pin</i></div>
+                        <div>
+                            <strong>GitHub</strong>
+                            <span class="left-title">unfaiyted</span>
+                        </div>
+
+                        <div><i class="material-icons">person_pin</i></div>
+                        <div>
+                            <strong>LinkedIn</strong>
+                            <span class="left-title">Visit</span>
+                        </div>
+
+                        <div><i class="material-icons">person_pin</i></div>
+                        <div>
+                            <strong>Skype</strong>
+                            <span class="left-title">unfaiyted</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-8">
+
+                    <div class="row resume-right-header">
+                        <h1>Dane L Miller</h1>
+                        <h4>Full-Stack Web Developer / Business Analyst</h4>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-1">  <i class="material-icons header-icon">location_city</i> </div>
+                        <div class="col-11">  <h3 class="right-header">Work Experience</h3>
+                            <hr class="resume-main-hr"></div>
+                    </div>
+
+                    <div class="row history-list">
+                        <div class="years">   <span class="dot time-line"></span>2010 - 2012</div>
+                        <div class="exp-info">
+                            <h5>J.P Morgan Chase</h5>
+                            <h6>Strategic Business Analyst</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="years"><span class="dot time-line"></span>2010 - 2012</div>
+                        <div class="exp-info">
+                            <h5>U.S Army</h5>
+                            <h6>Signals Intelligence Analyst</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="years-last"><span class="dot time-line"></span>2010 - 2012</div>
+                        <div class="exp-info">
+                            <h5>Work Location Name</h5>
+                            <h6>Job title</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-1">      <i class="material-icons header-icon">school</i> </div>
+                        <div class="col-11">  <h3 class="right-header">Education</h3>
+                            <hr class="resume-main-hr"></div>
+                    </div>
+
+
+                    <div class="row history-list">
+                        <div class="years">   <span class="dot time-line"></span>2010 - 2012</div>
+                        <div class="exp-info">
+                            <h5>CodeUp</h5>
+                            <h6>Full Stack Web Development</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="years"><span class="dot time-line"></span>2010 - 2012</div>
+                        <div class="exp-info">
+                            <h5>Cochise College</h5>
+                            <h6>Intelligence Analytics</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="years-last"><span class="dot time-line"></span>2009- 2010</div>
+                        <div class="exp-info">
+                            <h5>Boise State University</h5>
+                            <h6>Computer Science</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-1">      <i class="material-icons header-icon">developer_mode</i> </div>
+                        <div class="col-11">  <h3 class="right-header">Skills and Expertize</h3>
+                            <hr class="resume-main-hr"></div>
+                    </div>
+
+
+                    <div class="row history-list">
+                        <div class="years">   <span class="dot time-line"></span>2010 - 2012</div>
+                        <div class="exp-info">
+                            <h5>Work Location Name</h5>
+                            <h6>Job title</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="years"><span class="dot time-line"></span>2010 - 2012</div>
+                        <div class="exp-info">
+                            <h5>Work Location Name</h5>
+                            <h6>Job title</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="years-last"><span class="dot time-line"></span>2010 - 2012</div>
+                        <div class="exp-info">
+                            <h5>Work Location Name</h5>
+                            <h6>Job title</h6>
+                            <p>Information about the job and what was done at the job and such</p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+    </div>
+</div>
+
+<div th:replace="partials/main :: footer" />
+</body>
+</html>

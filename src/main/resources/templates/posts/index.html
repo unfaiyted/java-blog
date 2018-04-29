@@ -7,8 +7,92 @@
 <body>
 
 <div th:replace="partials/main :: navbar" />
+<div class="header-spacer"></div>
+<div class="container mx-auto">
 
-<div class="container">
+    <div class="row">
+        <div class="col-8">
+
+            <div class="row  p-2">
+                <div id="top-post">
+                    <div class="spacer"> </div>
+                    <div class="title p-2"><h2>Amazon Alyssa. Has she gone insane? Fix yours today</h2></div>
+                </div>
+                <div class="desc p-3"><p>Lately they laugh, they cry, they have random panic attacks. Some say
+                    this could be the end. Vaporware vexillologist mixtape tote bag pug kitsch. PBR&B migas waistcoat
+                    tofu slow-carb yuccie stumptown taxidermy. Helvetica hell of retro post-ironic. Cornhole bitters
+                    kombucha, slow-carb...</p>
+                    <button class="read-more-btn hvr-shutter-in-vertical m-1 p-1">Read All</button>
+                    </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-6">
+                    <div class="highlight-container">
+                        <div class="highlight-post"></div>
+                    </div>
+                    <div class="title p-1"><h4>Amazon Alyssa. Has she gone insane? Fix yours today</h4></div>
+                    <div class="desc p-2"><p>Vaporware vexillologist mixtape tote...</p>
+                        <button class="read-more-btn hvr-shutter-in-vertical m-1 p-1">Read All</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="highlight-container">
+                        <div class="highlight-post">
+                        </div>
+                    </div>
+                    <div class="title p-1"><h4>Amazon Alyssa. Has she gone insane? Fix yours today</h4></div>
+                    <div class="desc p-2"><p>Some say
+                        this could be the end...</p>
+                        <button class="read-more-btn hvr-shutter-in-vertical m-1 p-1 shadow-up">Read All</button>
+                       </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="row p-4 text-center align-center w-100">
+              <span>  <button class="posts-more-btn hvr-shutter-in-vertical m-2 p-2">More Articles....</button></span>
+            </div>
+
+
+        </div>
+        <div class="col-4">
+            <div class="card p-2 mb-4">
+                <input type="text"   class="form-control" id="postSearch" name="postSearch" placeholder="Search posts..."/>
+            </div>
+            <div class="card  p-2 popularity-card">
+                <h2 class="text-uppercase text-center">Most Popular</h2>
+                <ol>
+                    <li class=" p-2"><div class="hvr-bounce-to-left"><span>CSS Design Structures and Building Things</div></li>
+                    <li class=" p-2 "><div class="hvr-bounce-to-left "><span class="">Building a blog in Spring</span></div></li>
+                    <li class=" p-2"><div class="hvr-bounce-to-left">Spash pages? Are they outdated</div></li>
+                    <li class=" p-2"><div class="hvr-bounce-to-left">Living in the past, time machines</div></li>
+                    <li class=" p-2"><div class="hvr-bounce-to-left">Starbucks is too expensive, but you'll buy it anyway</div></li>
+                </ol>
+            </div>
+
+
+
+            <div class="ad-container  mt-4 shadow-up">
+                <div class="ad-post"></div>
+            </div>
+
+            <div class="card  p-2 popularity-card mt-4">
+                <h2 class="text-uppercase text-center">Topics</h2>
+                <ul>
+                    <li><span  class="hvr-underline-from-center">CSS</span></li>
+                    <li><span  class="hvr-underline-from-center">HTML</span></li>
+                    <li><span  class="hvr-underline-from-center">JAVA</span></li>
+                    <li><span  class="hvr-underline-from-center">Javascript</span></li>
+                    <li><span  class="hvr-underline-from-center">MVC</span></li>
+                </ul>
+                <small class="text-muted text-center p-2"><a href="#">Full List</a></small>
+            </div>
+        </div>
+    </div>
+
 
     <div th:each="post : ${posts}">
         <span th:text="${post.getId()}"></span>
@@ -17,7 +101,6 @@
         <a class="btn btn-secondary" th:href="@{/posts/{id}/delete(id=${post.getId()})}">[Delete]</a>
         <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.getId()})}">[Edit]</a>
     </div>
-
 </div>
 
 <div th:replace="partials/main :: footer" />

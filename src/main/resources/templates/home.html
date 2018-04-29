@@ -3,13 +3,11 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="partials/main :: header">
     <meta charset="UTF-8" />
-    <title>Home</title>
+    <title>Index page</title>
 </head>
 <body>
 
 <div th:replace="partials/main :: navbar" />
-<div class="container">
-
     <div class="h-100 main-container  mx-auto w-100 text-center">
 
         <div class="h-100 filter-container text-center ">
@@ -26,7 +24,9 @@
                 </div>
                 <div class="col-12 justify-content-center align-self-center tag-buttons">
                     <div class="row  justify-content-center align-self-center m-4">
-                        <div class="tag-button m-3 hvr-pulse">Portfolio</div> <div data-popup-open="popup-1" class="btn tag-button m-3 hvr-pulse" >Résumé</div>
+                        <div class="tag-button m-3 hvr-pulse"><a href="/posts">Blog</a></div>
+                        <div class="tag-button m-3 hvr-pulse">Portfolio</div>
+                        <div data-popup-open="popup-1" class="tag-button m-3 hvr-pulse" >Résumé</div>
                     </div>
                 </div>
 
@@ -45,8 +45,6 @@
             <p class="text-center p-4">With technical experieance in some of the most popular technologies on the market today.
                 Keep writing about things and how they happend and yes I suppose
                 I could be using the Lorem Ipsum text here but this just seems more fun for me at the moment. </p>
-
-
 
             <div class="d-flex flex-row flex-wrap justify-content-center h-100 text-center">
                 <div class="row p-3">
@@ -67,25 +65,6 @@
                         <img src="img/icon-person.png" alt=""><span>Buzz Title</span>
                         <p>This is the title of the thing that is happening</p>
                     </div>
-                    <!--<div class="col">-->
-                    <!--<img src="images/icon-web.png" alt="">-->
-                    <!--</div>-->
-                    <!--<div class="col">-->
-                    <!--<img src="images/icon-html.png" alt="">-->
-                    <!--</div>-->
-                    <!--<div class="col">-->
-                    <!--<img src="images/icon-css.png" alt="">-->
-                    <!--</div>-->
-                    <!--<div class="col">-->
-                    <!--<img src="images/icon-java.png" alt="">-->
-                    <!--</div>-->
-
-                    <!--<div class="col">-->
-                    <!--<img src="images/icon-jquery.png" alt="">-->
-                    <!--</div>-->
-                    <!--<div class="col">-->
-                    <!--<img src="images/icon-node.png" alt="">-->
-                    <!--</div>-->
 
                 </div>
             </div>
@@ -97,28 +76,28 @@
 
         <div class="row h-75 text-center">
             <div class="col-lg-3 col-sm-6 col-12 panel design-panel hvr-shutter-out-vertical">
-                <img src="images/icon-gear.png" alt="" >
+                <img src="img/icon-gear.png" alt="" >
                 <span>Design</span>
                 <p>The best design starts with a lot of words that make people happy. We type this because we like words
                     and buzz things and stuff like that. Everything perfect and organized. Beautiful. </p>
                 <div class="more-btn  hvr-pulse"><i class="material-icons">arrow_forward</i></div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12 panel development-panel hvr-shutter-out-vertical">
-                <img src="images/icon-laptop.png" alt="">
+                <img src="img/icon-laptop.png" alt="">
                 <span>Development</span>
                 <p>The best design starts with a lot of words that make people happy. We type this because we like words
                     and buzz things and stuff like that. Everything perfect and organized. Beautiful. </p>
                 <div class="more-btn  hvr-pulse"><i class="material-icons">arrow_forward</i></div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12 panel strategy-panel hvr-shutter-out-vertical">
-                <img src="images/icon-globe.png" alt="">
+                <img src="img/icon-globe.png" alt="">
                 <span>Strategy</span>
                 <p>The best design starts with a lot of words that make people happy. We type this because we like words
                     and buzz things and stuff like that. Everything perfect and organized. Beautiful. </p>
                 <div class="more-btn  hvr-pulse"><i class="material-icons">arrow_forward</i></div>
             </div>
             <div class="col-lg-3 col-sm-6 col-12 panel comm-panel hvr-shutter-out-vertical">
-                <img src="images/icon-speech.png" alt="" class="img-fluid">
+                <img src="img/icon-speech.png" alt="" class="img-fluid">
                 <span>Communication</span>
                 <p>The best design starts with a lot of words that make people happy. We type this because we like words
                     and buzz things and stuff like that. Everything perfect and organized. Beautiful. </p>
@@ -127,14 +106,10 @@
         </div>
 
     </div>
-<div sec:authorize="isAuthenticated()">
-    This content is only shown to authenticated users.
-    User ID: <span th:text="${#authentication.principal.id}" />
-    Username: <span th:text="${#authentication.principal.username}" />
-    Email: <span th:text="${#authentication.principal.email}" />
-</div>
-</div>
+
+<div th:replace="personal/resume :: resume" />
 
 <div th:replace="partials/main :: footer" />
+<script th:src="@{~/js/global.js}"></script>
 </body>
 </html>

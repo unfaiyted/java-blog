@@ -8,7 +8,7 @@
 
 
 <div th:replace="partials/main :: navbar" />
-<h1>Log In</h1>
+<div class="header-spacer"></div>
 <div class="col-4 mx-auto">
 <div th:if="${param.error}">
     Invalid Username and Password.
@@ -19,7 +19,7 @@
 </div>
 
 <form class="card card-block bg-faded m-3 p-3 col-4 mx-auto" th:action="@{/login}" method="post">
-
+        <h5 class="card-title">Please login</h5>
     <form>
         <div class="form-group">
             <label for="username">Username</label>
@@ -35,6 +35,8 @@
             <label class="form-check-label" for="exampleCheck1">Stay Logged in.</label>
         </div>
         <button type="submit" class="btn btn-primary">Log In</button>
+        <small id="register" class="form-text text-muted text-right">
+            <a href="/sign-up">Register?</a></small>
     </form>
 
 
