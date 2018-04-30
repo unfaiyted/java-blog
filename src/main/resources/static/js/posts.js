@@ -12,3 +12,4 @@
         $('#posts').html(html);
     });
 })(jQuery);
+

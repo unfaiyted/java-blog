@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
-@Service
+@Service("customUserDetailsService")
 public class UserDetailsLoader implements UserDetailsService {
     private final Users users;
 
@@ -18,6 +18,15 @@ public class UserDetailsLoader implements UserDetailsService {
     public UserDetailsLoader(Users users) {
                 this.users = users;
     }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        /* ... */
+
+        return new UserWithRoles(user, roles.ofUserWith(username)); // This is the only change
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {

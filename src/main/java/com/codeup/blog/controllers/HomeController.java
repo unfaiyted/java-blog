@@ -15,7 +15,6 @@ public class HomeController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index() {
         return "home";
-
     }
 
     @RequestMapping(path = "/roll-dice", method = RequestMethod.GET)

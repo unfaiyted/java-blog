@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.print.Doc;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.List;
 
 // Post object
@@ -25,6 +26,9 @@ public class Post {
     @Column(nullable = false,  columnDefinition="TEXT")
     private String body;
 
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
     @ManyToOne
     @JsonBackReference(value = "owner-of")
     private User owner;
@@ -41,6 +45,7 @@ public class Post {
         this.owner = owner;
         this.title = title;
         this.body = body;
+        this.createdAt = LocalDateTime.now();
     }
 
     public Post(User owner, String title, String body, List<Document> documents) {
@@ -48,6 +53,7 @@ public class Post {
         this.title = title;
         this.body = body;
         this.documents = documents;
+        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -72,6 +78,14 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public User getOwner() {

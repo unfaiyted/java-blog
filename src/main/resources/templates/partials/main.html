@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/css/bootstrap-select.min.css">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+    <!--<link rel="stylesheet"-->
+          <!--href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link rel="stylesheet" th:href="@{~/css/global.css}">
     <link type="text/css" rel="stylesheet" th:href="@{~/css/post.css}">
 </head>
@@ -91,8 +94,9 @@
         <img th:src="@{~/img/logo.png}" alt="Dane Miller">
 
     </div>
-    <div class="d-flex  justify-content-center m-3 flex-wrap">
-        <div class="col text-right align-self-baseline">   <a href="#">contact@danemiller.me</a>
+    <div class="d-flex  justify-content-center m-3 flex-wrap final">
+        <div class="col text-right align-self-baseline">
+            <div class="badge badge-pill badge-dark p-2"><a href="#">contact@danemiller.me</a></div>
         </div>
 
         <div class="col text-center">
@@ -102,7 +106,8 @@
             <div class="hvr-outline-in"> <img th:src="@{~/img/logo-reddit.png}" alt="Reddit"  class="logo-img "></div>
         </div>
 
-        <div class="col text-left align-self-baseline"><span>&copy; Dane L Miller. All rights reserved.</span>
+        <div class="col text-left align-self-baseline">
+            <div class="badge badge-pill badge-dark p-2"><span>&copy; Dane L Miller. All rights reserved.</span></div>
         </div>
     </div>
     </div>
@@ -117,7 +122,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/js/bootstrap-select.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>-->
 
     <script type="text/javascript">
 

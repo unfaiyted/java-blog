@@ -112,23 +112,56 @@ $(function() {
     // Start upload refresh on load.
     refreshUploaded();
 
-
-
     // Init Editor
     $(document).ready(function() {
+
+    // SummerNote Editor
+
+    var codeBtn = function (context) {
+        var ui = $.summernote.ui;
+
+        // create button
+        var button = ui.button({
+            contents: '<i class="fa fa-child"/> Code',
+            container: false,
+            tooltip: 'code-input',
+            click: function () {
+                context.invoke('editor.pasteHTML', '<pre style="border:1px solid #000;"><code class="html">Place your code here.</code></pre>');
+                // $('#body').summernote('editor.pasteHTML', '<pre><code class="html">Place your code here.</code></pre>');
+            }
+        });
+        return button.render();
+    }
+
         $('#body').summernote({
+            height: 400,
+            minHeight: 300,
+            maxHeight: 800,
+            "dialogsInBody": true,
+            "prettifyHtml": true,
             toolbar: [
                 // [groupName, [list of button]]
+                ['code', ['code']],
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['font', ['strikethrough', 'superscript', 'subscript']],
                 ['fontsize', ['fontsize']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']]
+                ['height', ['height']],
+                ["misc", ["codeview"]]
             ],
-            height: 400,
-            minHeight: 300,
-            maxHeight: 800,
+            codemirror: { // codemirror options
+                theme: 'monokai',
+                "mode": "text/html",
+                "htmlMode": true,
+                "lineNumbers": true,
+                "width" : "100px",
+                "textWrapping" : true
+            },
+            buttons: {
+                code: codeBtn
+            },
+
             placeholder: 'type something brilliant, or at least readable.',
         });
     });
