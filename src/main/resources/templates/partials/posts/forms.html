@@ -10,8 +10,7 @@
 <div th:fragment="post">
         <form th:action="${action}" method="post" th:object="${post}" name="post-form">
 
-            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger" role="alert" />
-            <div th:if="${#fields.hasErrors('body')}" th:errors="*{body}"   class="alert alert-danger" role="alert" />
+            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger alert-dismissible fade show" role="alert" />
 
             <label th:for="*{title}">Pick a wonderful title</label>
             <div class="input-group mb-3">
@@ -20,6 +19,8 @@
                 </div>
                 <input th:field="*{title}" class="form-control" aria-describedby="basic-addon3">
             </div>
+
+            <div th:if="${#fields.hasErrors('body')}" th:errors="*{body}"   class="alert alert-danger alert-dismissible fade show" role="alert" />
 
             <label th:for="*{body}">Description</label>
             <textarea th:field="*{body}" cols="8"/>

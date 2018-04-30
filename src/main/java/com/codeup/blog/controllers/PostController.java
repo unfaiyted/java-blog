@@ -6,7 +6,7 @@ import com.codeup.blog.models.User;
 import com.codeup.blog.repositories.Documents;
 import com.codeup.blog.repositories.Posts;
 import com.codeup.blog.repositories.Users;
-import com.codeup.blog.services.DocumentUploadService;
+import com.codeup.blog.services.PostService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +23,18 @@ import java.util.List;
 
 @Controller
 public class PostController {
-    private final Posts postDao;
-    private final Users userDao;
+    private final PostService postDao;
     private final Documents docDao;
 
     @Autowired
-    public PostController(Posts postDao, Users userDao, Documents docDao) {
+    public PostController(PostService postDao, Documents docDao) {
         this.postDao = postDao;
-        this.userDao = userDao;
         this.docDao = docDao;
     }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
     public String index(Model model) {
-
-        model.addAttribute("posts", postDao.findAll());
+        model.addAttribute("posts", postDao.getPosts().findAll());
 
         return "/posts/index";
     }
@@ -45,8 +42,9 @@ public class PostController {
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
     public String view(@PathVariable Long id, Model model) {
 
-        if(postDao.findById(id).isPresent()) {
-            model.addAttribute("post", postDao.findById(id).get());
+        if(postDao.getPosts().findById(id).isPresent()) {
+            model.addAttribute("post", postDao.getPosts().findById(id).get());
+            model.addAttribute("categories", postDao.getCategoryNames(id));
             return "/posts/show";
         }
 
@@ -56,9 +54,9 @@ public class PostController {
     @RequestMapping(path = "/posts/{id}/edit", method = RequestMethod.GET)
     public String edit(@PathVariable Long id, Model model) {
 
-        if(postDao.findById(id).isPresent()) {
+        if(postDao.getPosts().findById(id).isPresent()) {
             model.addAttribute("action", "");
-            model.addAttribute("post", postDao.findById(id).get());
+            model.addAttribute("post", postDao.getPosts().findById(id).get());
             return "/posts/edit";
         }
         return "redirect:/posts";
@@ -71,8 +69,8 @@ public class PostController {
                 model.addAttribute("post", post);
                 return "/posts/" + id + "/edit";
             } else {
-                post.setOwner(postDao.findById(id).get().getOwner());
-                postDao.save(post);
+                post.setOwner(postDao.getPosts().findById(id).get().getOwner());
+                postDao.getPosts().save(post);
                 return "redirect:/posts";
             }
     }
@@ -102,8 +100,6 @@ public class PostController {
 
         }
 
-        System.out.println("total docs:" + documents.size());
-
         // Custom evaluation example
         if (post.getTitle().endsWith("?")) {
             validation.rejectValue(
@@ -121,7 +117,7 @@ public class PostController {
         } else {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             post.setOwner(user);
-            postDao.save(post);
+            postDao.getPosts().save(post);
             post.setDocuments(documents);
             docDao.saveAll(post.getDocuments());
             return "redirect:/posts";
@@ -130,16 +126,24 @@ public class PostController {
 
     @RequestMapping("/posts/{id}/delete")
     public String delete(@PathVariable Long id) {
-            postDao.delete(postDao.findById(id).get());
+            postDao.getPosts().delete(postDao.getPosts().findById(id).get());
             return "redirect:/posts";
 
+    }
+
+    @PostMapping("/posts/{id}/disable")
+    public String disableAd(Long id) {
+        Post post = postDao.getPosts().findById(id).get();
+        post.disable();
+        postDao.getPosts().save(post);
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts.json")
     public @ResponseBody List<Post> viewAllPostsInJSON() {
 
         List<Post> p = new ArrayList<>();
-        postDao.findAll().forEach(p::add);
+        postDao.getPosts().findAll().forEach(p::add);
 
         return p;
     }

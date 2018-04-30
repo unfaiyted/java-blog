@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">>
 <head th:replace="partials/main :: header">
     <meta charset="UTF-8" />
     <title>Home</title>
@@ -27,27 +28,31 @@
             </div>
 
             <div class="row p-2">
-                <div class="col-6">
+
+            <!--Post Display-->
+                <div th:each="post : ${posts}" class="col-6 hl-instance">
                     <div class="highlight-container">
-                        <div class="highlight-post"></div>
+                        <div class="highlight-post" th:style="'background: url(' + @{https://loremflickr.com/1100/600/sad,girl/all?random=} + ${post.getId()} + '); background-size: cover;'"></div>
                     </div>
-                    <div class="title p-1"><h4>Amazon Alyssa. Has she gone insane? Fix yours today</h4></div>
-                    <div class="desc p-2"><p>Vaporware vexillologist mixtape tote...</p>
-                        <button class="read-more-btn hvr-shutter-in-vertical m-1 p-1">Read All</button>
+                    <div class="title p-1"><h4>
+                        <a th:href="@{/posts/} + ${post.getId()}">
+                            <span th:text="${post.getTitle()}" />
+                        </a></h4>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="highlight-container">
-                        <div class="highlight-post">
-                        </div>
-                    </div>
-                    <div class="title p-1"><h4>Amazon Alyssa. Has she gone insane? Fix yours today</h4></div>
                     <div class="desc p-2"><p>Some say
                         this could be the end...</p>
                         <button class="read-more-btn hvr-shutter-in-vertical m-1 p-1 shadow-up">Read All</button>
-                       </div>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <a class="btn btn-secondary" th:href="@{/posts/{id}/delete(id=${post.getId()})}">[Delete]</a>
+                            <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.getId()})}">[Edit]</a>
+                        </div>
+                    </div>
+
+                    <!--<span th:text="${post.getId()}"></span>-->
+                    <!--<span th:text="${post.getOwner().getUsername()}" />-->
 
                 </div>
+
 
             </div>
 
@@ -93,14 +98,6 @@
         </div>
     </div>
 
-
-    <div th:each="post : ${posts}">
-        <span th:text="${post.getId()}"></span>
-       <a th:href="@{/posts/} + ${post.getId()}"><span th:text="${post.getTitle()}" /></a>
-        <span th:text="${post.getOwner().getUsername()}" />
-        <a class="btn btn-secondary" th:href="@{/posts/{id}/delete(id=${post.getId()})}">[Delete]</a>
-        <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.getId()})}">[Edit]</a>
-    </div>
 </div>
 
 <div th:replace="partials/main :: footer" />

@@ -1,6 +1,10 @@
 package com.codeup.blog.services;
 
+import com.codeup.blog.models.Category;
 import com.codeup.blog.models.Post;
+import com.codeup.blog.models.PostCategory;
+import com.codeup.blog.repositories.Categories;
+import com.codeup.blog.repositories.PostCategories;
 import com.codeup.blog.repositories.Posts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,15 +14,16 @@ import java.util.List;
 
 @Service
 public class PostService {
-    @Autowired
     private final Posts posts;
+    private final PostCategories categories;
 
     @Autowired
-    public PostService(Posts posts) {
+    public PostService(Posts posts, PostCategories categories) {
         this.posts = posts;
+        this.categories = categories;
     }
 
-    public Posts findAll() {
+    public Posts getPosts() {
         return posts;
     }
     
@@ -29,6 +34,10 @@ public class PostService {
             }
         }
         return null;
+    }
+
+    public List<String> getCategoryNames(Long id) {
+        return categories.namesByPostId(id);
     }
 
     public Long getNextId() {

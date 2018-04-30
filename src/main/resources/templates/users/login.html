@@ -10,12 +10,15 @@
 <div th:replace="partials/main :: navbar" />
 <div class="header-spacer"></div>
 <div class="col-4 mx-auto">
-<div th:if="${param.error}">
-    Invalid Username and Password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
+
+    <div  th:if="${param.logout}" class="p-2 m-2alert alert-warning" role="alert">
+        You have been logged out.
+    </div>
+
+    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+        Invalid Username and Password.
+    </div>
+
 </div>
 
 <form class="card card-block bg-faded m-3 p-3 col-4 mx-auto" th:action="@{/login}" method="post">

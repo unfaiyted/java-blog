@@ -1,6 +1,7 @@
 package com.codeup.blog.models;
 
 import com.codeup.blog.models.User;
+import com.codeup.blog.repositories.Categories;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
@@ -29,6 +30,9 @@ public class Post {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column
+    private boolean disabled = false;
+
     @ManyToOne
     @JsonBackReference(value = "owner-of")
     private User owner;
@@ -36,6 +40,10 @@ public class Post {
     @OneToMany(mappedBy = "post")
     @JsonBackReference(value = "post-documents")
     private List<Document> documents;
+
+    @OneToMany(mappedBy = "post")
+    @JsonBackReference(value = "post-categories")
+    private List<PostCategory> categories;
 
     // Blank Object
     public Post() {
@@ -109,5 +117,9 @@ public class Post {
 
     public void addDocument(Document document) {
         this.documents.add(document);
+    }
+
+    public void disable() {
+        this.disabled = true;
     }
 }

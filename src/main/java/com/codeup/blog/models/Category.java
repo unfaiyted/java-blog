@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="postCategory")
+@Table(name="category")
 public class Category {
     @Id @GeneratedValue
     private Long id;
