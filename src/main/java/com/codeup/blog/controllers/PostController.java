@@ -10,6 +10,8 @@ import com.codeup.blog.services.PostService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,8 +35,8 @@ public class PostController {
     }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
-    public String index(Model model) {
-        model.addAttribute("posts", postDao.getPosts().findAll());
+    public String index(Model model,  @PageableDefault(value=10) Pageable pageable) {
+        model.addAttribute("posts", postDao.getPosts().findAll(pageable));
 
         return "/posts/index";
     }

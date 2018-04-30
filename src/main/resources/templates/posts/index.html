@@ -14,23 +14,27 @@
     <div class="row">
         <div class="col-8">
 
-            <div class="row  p-2">
-                <div id="top-post">
-                    <div class="spacer"> </div>
-                    <div class="title p-2"><h2>Amazon Alyssa. Has she gone insane? Fix yours today</h2></div>
-                </div>
-                <div class="desc p-3"><p>Lately they laugh, they cry, they have random panic attacks. Some say
-                    this could be the end. Vaporware vexillologist mixtape tote bag pug kitsch. PBR&B migas waistcoat
-                    tofu slow-carb yuccie stumptown taxidermy. Helvetica hell of retro post-ironic. Cornhole bitters
-                    kombucha, slow-carb...</p>
-                    <button class="read-more-btn hvr-shutter-in-vertical m-1 p-1">Read All</button>
+
+            <div  th:if='${posts.isFirst()}'>
+                <div class="row  p-2">
+                    <div id="top-post">
+                        <div class="spacer"> </div>
+                        <div class="title p-2"><h2>Amazon Alyssa. Has she gone insane? Fix yours today</h2></div>
                     </div>
+                    <div class="desc p-3"><p>Lately they laugh, they cry, they have random panic attacks. Some say
+                        this could be the end. Vaporware vexillologist mixtape tote bag pug kitsch. PBR&B migas waistcoat
+                        tofu slow-carb yuccie stumptown taxidermy. Helvetica hell of retro post-ironic. Cornhole bitters
+                        kombucha, slow-carb...</p>
+                        <button class="read-more-btn hvr-shutter-in-vertical m-1 p-1">Read All</button>
+                        </div>
+                </div>
+
             </div>
 
             <div class="row p-2">
 
             <!--Post Display-->
-                <div th:each="post : ${posts}" class="col-6 hl-instance">
+                <div th:each="post : ${posts}" class="col-6 hl-instance" th:data-id="${post.getId()}">
                     <div class="highlight-container">
                         <div class="highlight-post" th:style="'background: url(' + @{https://loremflickr.com/1100/600/sad,girl/all?random=} + ${post.getId()} + '); background-size: cover;'"></div>
                     </div>
@@ -41,7 +45,8 @@
                     </div>
                     <div class="desc p-2"><p>Some say
                         this could be the end...</p>
-                        <button class="read-more-btn hvr-shutter-in-vertical m-1 p-1 shadow-up">Read All</button>
+
+                        <a th:href="@{/posts/} + ${post.getId()}" class="read-more-btn hvr-shutter-in-vertical m-1 p-1 shadow-up">Read All</a>
                         <div sec:authorize="hasRole('ROLE_ADMIN')">
                             <a class="btn btn-secondary" th:href="@{/posts/{id}/delete(id=${post.getId()})}">[Delete]</a>
                             <a class="btn btn-primary" th:href="@{/posts/{id}/edit(id=${post.getId()})}">[Edit]</a>
@@ -58,8 +63,60 @@
 
 
             <div class="d-flex flex-row p-4 text-center justify-content-center w-100">
-                <button class="posts-more-btn hvr-shutter-in-vertical m-2 p-2">More Articles....</button>
+                <nav class="text-center mx-auto">
+                    <ul class="pagination">
+                        <li th:class="@{page-item} + ${posts.isFirst()}? 'disabled' : ''">
+                            <span class="page-link" th:if='${posts.isFirst()}'>First</span>
+                            <a  class="page-link" th:if='${not posts.isFirst()}' th:href="'?page=0'">
+                                First
+                            </a>
+                        </li>
+                        <li th:class="${posts.hasPrevious()}? '' : 'disabled'">
+                            <span class="page-link disabled" th:if='${not posts.hasPrevious()}'>«</span>
+                            <a class="page-link"
+                               th:if='${posts.hasPrevious()}'
+                               th:href="'?page=' + ${posts.getNumber() - 1}"
+                               title='Go to previous page'
+                            >
+                                «
+                            </a>
+                        </li>
+                        <li  class="page-item" th:each="i : ${#numbers.sequence(1, posts.getTotalPages())}">
+                <span
+                        th:if='${(i - 1) == param.page}'
+                        th:text='${i}'>
+                    1
+                </span>
+                            <a class="page-link"
+                               th:if='${not ((i - 1) == param.page)}'
+                               th:href="'?page=' + ${(i -1)}"
+                            >
+                                <span th:text='${i}'>1</span>
+                            </a>
+                        </li>
+                        <li th:class="${posts.hasNext()} ? '' : 'disabled'">
+                            <span class="page-link" th:if='${not posts.hasNext()}'>»</span>
+                            <a class="page-link"
+                               th:if='${posts.hasNext()}'
+                               th:href="'?page=' + ${posts.getNumber() + 1}"
+                               title='Go to next page'
+                            >
+                                »
+                            </a>
+                        </li>
+                        <li th:class="${posts.isLast()}? 'disabled' : ''">
+                            <span class="page-link disabled" th:if='${posts.isLast()}'>Last</span>
+                            <a  class="page-link"
+                                th:if='${not posts.isLast()}'
+                                th:href="'?page=' + ${posts.getTotalPages() - 1}"
+                            >
+                                Last
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+
 
 
         </div>
@@ -101,5 +158,7 @@
 </div>
 
 <div th:replace="partials/main :: footer" />
+
+<script src="/js/posts.js"></script>
 </body>
 </html>

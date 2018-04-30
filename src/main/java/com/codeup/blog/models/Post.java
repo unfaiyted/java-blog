@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name="posts")
 public class Post {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Post must contain a title.")

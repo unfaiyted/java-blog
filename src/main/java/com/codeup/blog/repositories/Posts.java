@@ -1,6 +1,8 @@
 package com.codeup.blog.repositories;
 
 import com.codeup.blog.models.Post;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,7 @@ public interface Posts extends CrudRepository<Post, Long> {
     //@Query("Select p from posts p where p.id=?1")
    //Optional<Post> findById(Long id);
 
+    Page<Post> findAll(Pageable pageable);
 
 
 }
