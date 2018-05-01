@@ -43,8 +43,7 @@
                             <span th:text="${post.getTitle()}" />
                         </a></h4>
                     </div>
-                    <div class="desc p-2"><p>Some say
-                        this could be the end...</p>
+                    <div class="desc p-2"><p th:utext="${post.getBlurb(50co)}"></p>
 
                         <a th:href="@{/posts/} + ${post.getId()}" class="read-more-btn hvr-shutter-in-vertical m-1 p-1 shadow-up">Read All</a>
                         <div sec:authorize="hasRole('ROLE_ADMIN')">

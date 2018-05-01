@@ -84,6 +84,15 @@ public class Post {
         return body;
     }
 
+    public String getBlurb(Integer length) {
+
+        String cleaned = body.replaceAll("\\<.*?>","");
+
+        if (cleaned.length() > length) { return cleaned.substring(0,length) + "..."; }
+
+        return cleaned;
+    }
+
     public void setBody(String body) {
         this.body = body;
     }
