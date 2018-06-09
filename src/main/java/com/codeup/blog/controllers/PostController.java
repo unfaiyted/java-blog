@@ -4,8 +4,6 @@ import com.codeup.blog.models.Document;
 import com.codeup.blog.models.Post;
 import com.codeup.blog.models.User;
 import com.codeup.blog.repositories.Documents;
-import com.codeup.blog.repositories.Posts;
-import com.codeup.blog.repositories.Users;
 import com.codeup.blog.services.PostService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -64,6 +62,7 @@ public class PostController {
         return "redirect:/posts";
 
     }
+
     @PostMapping(path = "/posts/{id}/edit")
     public String editPost(@PathVariable Long id, @Valid Post post, Errors validation, Model model) {
             if(validation.hasErrors()) {
@@ -126,13 +125,15 @@ public class PostController {
         }
     }
 
+    // Perm removes post from database
     @RequestMapping("/posts/{id}/delete")
     public String delete(@PathVariable Long id) {
             postDao.getPosts().delete(postDao.getPosts().findById(id).get());
             return "redirect:/posts";
-
     }
 
+
+    // hides a post from being viewable.
     @PostMapping("/posts/{id}/disable")
     public String disableAd(Long id) {
         Post post = postDao.getPosts().findById(id).get();

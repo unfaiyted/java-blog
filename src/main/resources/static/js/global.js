@@ -14,7 +14,6 @@ preload([
 ]);
 
 
-
 $(window).on('load', function() { // makes sure the whole site is loaded
     $('#status').fadeOut(); // will first fade out the loading animation
     $('#preloader').delay(600).fadeOut('slow'); // will fade out the white DIV that covers the website.
@@ -52,6 +51,12 @@ $(window).on('load', function() { // makes sure the whole site is loaded
     });
 
 
+    // hide elements display new ones for  4 panels
+    $('.more-btn').click(function () {
+        $('.panel').hide("slide", { direction: "right" }, 2000);
+        $(this).parent().parent().find('.panel').show("slide", { direction: "left" }, 1000)
+
+    })
 
 
 });
