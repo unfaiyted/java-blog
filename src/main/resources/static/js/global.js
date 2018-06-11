@@ -1,19 +1,3 @@
-function preload(arrayOfImages) {
-    $(arrayOfImages).each(function () {
-        $('<img />').attr('src',this).appendTo('body').css('display','none');
-    });
-}
-
-// Usage:
-
-preload([
-    'img/time.jpg',
-    'img/24hours.jpg',
-    'img/hipster.jpg',
-    'img/large-pg-img.jpg'
-]);
-
-
 $(window).on('load', function() { // makes sure the whole site is loaded
     $('#status').fadeOut(); // will first fade out the loading animation
     $('#preloader').delay(600).fadeOut('slow'); // will fade out the white DIV that covers the website.
@@ -68,7 +52,6 @@ $('[data-popup-open]').on('click', function(e)  {
     var targeted_popup_class = jQuery(this).attr('data-popup-open');
     $('body').css("overflow","hidden");
     $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
-    e.preventDefault();
 });
 //----- CLOSE
 $('[data-popup-close]').on('click', function(e)  {
@@ -76,7 +59,6 @@ $('[data-popup-close]').on('click', function(e)  {
     $('body').css("overflow","auto");
     $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
 
-    e.preventDefault();
 });
 
 
