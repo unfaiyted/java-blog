@@ -35,8 +35,8 @@
         </div>
     </div>
 
-    <div class="w-100 mx-auto box mh-100" id="services">
-        <div class="row">
+    <div class="w-100 mx-auto vh-100 box" id="services">
+        <div class="row vh-100">
 
             <p class="text-center h1 p-4 w-100">Providing innovative solutions for new technologies.</p>
 
@@ -80,7 +80,7 @@
     <div id="panels" class="w-100 mx-auto" >
 
         <div class="row  vh-100 text-center" id="process">
-            <div class="col-lg-3 col-sm-6 col-12 panel design-panel hvr-shutter-out-vertical ">
+            <div class="col-lg-3 col-sm-6 col-12 vh-100  panel design-panel hvr-shutter-out-vertical ">
                 <img src="img/icon-gear.png" alt="" >
                 <span>Design</span>
                 <p>Page and UI Design accounts for one of the most customer facing experiences that one might
@@ -89,7 +89,7 @@
                 </p>
                 <div class="more-btn  hvr-pulse"><i class="material-icons">arrow_forward</i></div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12 panel development-panel hvr-shutter-out-vertical">
+            <div class="col-lg-3 col-sm-6 col-12 vh-100  panel development-panel hvr-shutter-out-vertical">
                 <img src="img/icon-laptop.png" alt="">
                 <span>Development</span>
                 <p>A process by which you systematically create something over a period of time. Integral to a good process
@@ -97,7 +97,7 @@
                 </p>
                 <div class="more-btn  hvr-pulse"><i class="material-icons">arrow_forward</i></div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12 panel strategy-panel hvr-shutter-out-vertical">
+            <div class="col-lg-3 col-sm-6 col-12 vh-100 panel strategy-panel hvr-shutter-out-vertical">
                 <img src="img/icon-globe.png" alt="">
                 <span>Strategy</span>
                 <p>Understanding of limitations and finding ways to work through them in a timely manner to both
@@ -105,7 +105,7 @@
                 </p>
                 <div class="more-btn  hvr-pulse"><i class="material-icons">arrow_forward</i></div>
             </div>
-            <div class="col-lg-3 col-sm-6 col-12 panel comm-panel hvr-shutter-out-vertical">
+            <div class="col-lg-3 col-sm-6 col-12 vh-100 panel comm-panel hvr-shutter-out-vertical">
                 <img src="img/icon-speech.png" alt="" class="img-fluid">
                 <span>Communication</span>
                 <p>Working with others in a team and sharing information to better solve problems.
@@ -119,21 +119,85 @@
 
 
 
-<!--WORK projects-->
+<!-- Projects-->
 <div class="w-100 mx-auto" >
 
-    <div class="row  vh-100 text-center" id="work">
-    Work done here
+    <div class="project-buttons row">
+        <div class="prj-btn">
+            <button class="btn btn-secondary"> < </button>
+
+        </div>
+        <div class="prj-btn ml-auto">
+            <button class="btn btn-secondary"> > </button>
+        </div>
     </div>
+
+    <div class="d-flex flex-box w-100 vh-100  justify-content-center align-items-center" id="work">
+
+        <div class=" pl-4  col-md-offset-1 col-md-5 align-self-center align-items-center">
+
+            <div class="device-mockup">
+                <div class="device">
+                    <div class="screen">
+                        <img src="img/24hours.jpg" class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+            <div class="col-md-6 align-self-center align-items-center">
+                <h1>Project Name</h1>
+                <p>Java Spring Framework, JQuery, Node</p>
+                <hr>
+                <button class="btn btn-primary">View GitHub</button>
+
+            </div>
+    </div>
+
+
+
+
+
 
 </div>
 
 
-<!--WORK projects-->
+<!--CONTACT -->
 <div class="w-100 mx-auto" >
 
     <div class="row  vh-100 text-center" id="contact">
-CONTACT INFO HERE
+
+        Contact Me
+
+        <p>Please let me know if you have a project you'd be interested in getting my assistance on!</p>
+
+        NAME
+
+        EMAIL
+
+        PHONE NUMBER
+
+        MESSAGE
+
+
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
     </div>
 
 </div>

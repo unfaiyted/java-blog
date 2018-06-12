@@ -29,6 +29,14 @@ html, body {
 }
 
 
+.active {
+    border: 2px solid #a92328;
+    background-color: rgba(254, 104, 81, 0.25);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
 /* Preloader */
 
 #preloader {
@@ -45,10 +53,10 @@ html, body {
 
 
 .vh-max {
-    height: calc(100vh - 150px) !important;
+    height: calc(100vh - 75px) !important;
 }
 .vh-100 {
-    height: 100vh !important;
+    height: calc(100vh - 75px)  !important;
 }
 #status {
     width: 200px;
@@ -1135,4 +1143,57 @@ nav .pagination li{
 .nav-name {
     font-size: 50px;
     color: #fff;
+}
+
+
+#work {
+    background: url("../img/24hours.jpg");
+    background-size: cover;
+}
+
+
+#work .device {
+    background: url("../img/macbook.png");
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+}
+
+#work .device-mockup {
+    position: relative;
+    width: 100%;
+
+}
+
+.screen {
+    /*position: absolute;*/
+    position: relative;
+    padding: 7%;
+    margin-right: 5.97777%;
+    margin-bottom: 2.81%;
+    margin-left: 6%;
+
+}
+
+.project-buttons {
+    position: absolute;
+    width: 100%;
+    margin-top: calc(50vh - 75px);
+
+}
+
+.project-buttons .prj-btn {
+    position: relative;
+}
+
+.project-buttons .btn {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 5px;
 }

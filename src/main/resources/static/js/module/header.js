@@ -15,24 +15,22 @@ HeaderObject.prototype.init = function() {
     $(document).scroll(function() {
 
         if($(this).scrollTop() >= 70) {
-            console.log($(this).scrollTop());
-            $(self.headerNav).addClass('animated bounceInDown bg-custom-dark').removeClass('nav-top');
-
-
-            // bouncin and down
-            //fade to dark bg
-
+            $(self.headerNav).addClass('animated slideInDown bg-custom-dark').removeClass('nav-top');
         }
 
         if($(this).scrollTop() < 30) {
-            $(self.headerNav).removeClass('animated bounceInDown bg-custom-dark').addClass('nav-top');
+            $(self.headerNav).removeClass('animated slideInDown bg-custom-dark').addClass('nav-top');
 
-            //fade out bg
         }
-
     });
 
-}
+
+    $('.nav-item a').click(function () {
+         // create click to do animation?
+    });
+
+
+};
 
 
 
