@@ -120,15 +120,15 @@
 
 
 <!-- Projects-->
-<div class="w-100 mx-auto" >
+<div class="w-100 mx-auto" id="work-bg">
 
     <div class="project-buttons row">
         <div class="prj-btn">
-            <button class="btn btn-secondary"> < </button>
+            <button class="btn btn-secondary projects-back"> < </button>
 
         </div>
         <div class="prj-btn ml-auto">
-            <button class="btn btn-secondary"> > </button>
+            <button class="btn btn-secondary projects-forward"> > </button>
         </div>
     </div>
 
@@ -139,7 +139,7 @@
             <div class="device-mockup">
                 <div class="device">
                     <div class="screen">
-                        <img src="img/24hours.jpg" class="img-fluid" />
+                        <img src="img/24hours.jpg" id="screen" class="img-fluid" />
                     </div>
                 </div>
             </div>
@@ -147,10 +147,10 @@
         </div>
 
             <div class="col-md-6 align-self-center align-items-center">
-                <h1>Project Name</h1>
-                <p>Java Spring Framework, JQuery, Node</p>
+                <h1 class="proj-name">Project Name</h1>
+                <p class="proj-desc">Java Spring Framework, JQuery, Node</p>
                 <hr>
-                <button class="btn btn-primary">View GitHub</button>
+                <a href="#" class="proj-link btn btn-primary">View GitHub</a>
 
             </div>
     </div>
@@ -168,33 +168,39 @@
 
     <div class="row  vh-100 text-center" id="contact">
 
-        Contact Me
+        <div class="col-12 text-center mt-2">
+            <h1 class="contact-me">Contact Me</h1>
+        </div>
 
-        <p>Please let me know if you have a project you'd be interested in getting my assistance on!</p>
-
-        NAME
-
-        EMAIL
-
-        PHONE NUMBER
-
-        MESSAGE
+        <div class="col-12 text-center mt-2">
+            <p>Please let me know if you have a project you'd be interested in getting my assistance on!</p>
+        </div>
 
 
-        <form>
+        <form id="contact-form" class="col-12 text-left">
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <label for="nameInput">Name</label>
+                <input type="email" class="form-control" id="nameInput" placeholder="Enter name">
+
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="emailInput">Email</label>
+                <input type="email" class="form-control" id="emailInput"  placeholder="Enter email">
+
             </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+            <div class="form-group">
+                <label for="phoneInput">Phone</label>
+                <input type="email" class="form-control" id="phoneInput"  placeholder="Enter phone number">
+
             </div>
+
+            <div class="form-group">
+                <label for="messageInput">Message</label>
+                <input type="email" class="form-control" id="messageInput" placeholder="Enter message">
+
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 

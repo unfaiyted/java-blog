@@ -1,8 +1,9 @@
 const PageHeader = require('./module/header');
-
+const ProjectLooper = require('./module/projects');
 
 let header = new PageHeader();
 
+let project = new ProjectLooper();
 
 //
 // // $(window).on('load', function() { // makes sure the whole site is loaded

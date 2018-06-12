@@ -10,6 +10,7 @@ function HeaderObject(settings) {
 }
 
 HeaderObject.prototype.init = function() {
+
     let self = this;
 
     $(document).scroll(function() {
@@ -31,9 +32,6 @@ HeaderObject.prototype.init = function() {
 
 
 };
-
-
-
 
 
 
