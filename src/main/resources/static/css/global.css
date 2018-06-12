@@ -14,6 +14,21 @@ html, body {
 }
 
 
+
+.nav-top {
+    -webkit-transition: all 1.0s ease;
+    -moz-transition: all 1.0s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    height: 140px;
+}
+
+.navbar {
+    padding-top:0;
+    padding-bottom:0;
+}
+
+
 /* Preloader */
 
 #preloader {
@@ -28,6 +43,13 @@ html, body {
     /* makes sure it stays on top */
 }
 
+
+.vh-max {
+    height: calc(100vh - 150px) !important;
+}
+.vh-100 {
+    height: 100vh !important;
+}
 #status {
     width: 200px;
     height: 200px;
@@ -93,6 +115,8 @@ html, body {
 
 nav {
     font-family: 'Teko', sans-serif;
+    padding-top:0;
+    padding-bottom:0;
 }
 .my-name {
     color: #fff;
@@ -155,7 +179,8 @@ nav a:hover {
     text-align: center;
     line-height: 35px;
     padding-top: 5px;
-    margin-top: 10px;
+    margin-top: 7px;
+    border-top-width: 0;
     -webkit-box-shadow: -1px -1px 44px -6px rgba(255,0,0,1);
     -moz-box-shadow: -1px -1px 44px -6px rgba(255,0,0,1);
     box-shadow: -1px -1px 44px -6px rgba(255,0,0,1);
@@ -1104,4 +1129,10 @@ nav .pagination {
 }
 
 nav .pagination li{
+}
+
+
+.nav-name {
+    font-size: 50px;
+    color: #fff;
 }

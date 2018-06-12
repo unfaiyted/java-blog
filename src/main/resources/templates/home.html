@@ -8,7 +8,7 @@
 <body>
 
 <div th:replace="partials/main :: navbar" />
-    <div class="h-100 main-container  mx-auto w-100 text-center">
+    <div class="h-100 main-container  mx-auto w-100 text-center" id="home">
 
         <div class="h-100 filter-container text-center ">
         </div>
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="w-100 mx-auto box mh-100">
+    <div class="w-100 mx-auto box mh-100" id="services">
         <div class="row">
 
             <p class="text-center h1 p-4 w-100">Providing innovative solutions for new technologies.</p>
@@ -46,7 +46,7 @@
                 analytics reporting, and application development and ownership.
             </p>
 
-            <div class="d-flex flex-row flex-wrap justify-content-center h-100 text-center">
+            <div class="d-flex flex-row flex-wrap justify-content-center vh-max text-center">
                 <div class="row p-3">
                     <div class="col m-3">
                         <img src="img/icon-case.png" alt=""> <span>Technical Background</span>
@@ -77,10 +77,10 @@
     </div>
 
 
-    <div id="panels" class="w-100 mx-auto">
+    <div id="panels" class="w-100 mx-auto" >
 
-        <div class="row h-75 text-center">
-            <div class="col-lg-3 col-sm-6 col-12 panel design-panel hvr-shutter-out-vertical">
+        <div class="row  vh-100 text-center" id="process">
+            <div class="col-lg-3 col-sm-6 col-12 panel design-panel hvr-shutter-out-vertical ">
                 <img src="img/icon-gear.png" alt="" >
                 <span>Design</span>
                 <p>Page and UI Design accounts for one of the most customer facing experiences that one might
@@ -117,6 +117,29 @@
 
     </div>
 
+
+
+<!--WORK projects-->
+<div class="w-100 mx-auto" >
+
+    <div class="row  vh-100 text-center" id="work">
+    Work done here
+    </div>
+
+</div>
+
+
+<!--WORK projects-->
+<div class="w-100 mx-auto" >
+
+    <div class="row  vh-100 text-center" id="contact">
+CONTACT INFO HERE
+    </div>
+
+</div>
+
+
+
 <div th:replace="personal/resume :: resume" />
 
 <div th:replace="partials/main :: footer" />
@@ -125,6 +148,6 @@ src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
 integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 crossorigin="anonymous"></script>
 
-<script th:src="@{~/js/global.js}"></script>
+<script th:src="@{~/built/main.js}"></script>
 </body>
 </html>

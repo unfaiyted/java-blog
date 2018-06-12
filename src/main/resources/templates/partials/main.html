@@ -18,58 +18,65 @@
 </head>
 <body>
 
-<nav th:fragment="navbar" class="navbar  navbar-expand-md bg-faded justify-content-center bg-custom-dark fixed-top">
+<nav th:fragment="navbar" id="header-nav" class="navbar  navbar-expand-md bg-faded justify-content-center nav-top fixed-top">
     <div class="mr-auto w-50 d-flex ">
         <div>
-        <a href="/" class="navbar-brand text-uppercase "><img th:src="@{~/img/logo.png}" class="d-inline-block align-center img-logo" alt="">  </a>
-        </div>
-        <div><a href="/" class="nav-link text-uppercase hvr-underline-from-center m-3 p-1" >Home</a></div>
+            <span class="nav-name">Dane Miller</span>
+       </div>
+
     </div>
 
     <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
-        <ul class="navbar-nav w-100 justify-content-center">
-            <li class="nav-item active">
 
-            </li>
-            <li class="nav-item hvr-underline-from-center">
-                <a class="nav-link my-name" href="./">Dane's DEVeloping Disaster </a>
-            </li>
-            <li class="nav-item">
-
-            </li>
-        </ul>
         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
             <li class="nav-item  p-2 m-1 ">
-                <a href="/posts/" class="nav-link text-uppercase hvr-underline-from-center">
-                    Latest
+                <a href="#home" class="nav-link text-uppercase hvr-underline-from-center">
+                    Home
                 </a>
             </li>
-            <li class="nav-item dropdown p-2 m-1 ">
-                <a class="nav-link dropdown-toggle  text-uppercase hvr-underline-from-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div sec:authorize="!hasRole('ROLE_ADMIN')"> User </div>
-                    <div sec:authorize="hasRole('ROLE_ADMIN')"> ADMIN </div>
+            <li class="nav-item  p-2 m-1 ">
+                <a href="#services" class="nav-link text-uppercase hvr-underline-from-center">
+                    Services
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/profile">Profile</a>
-                    <a class="dropdown-item" href="/posts/create">Create Post</a>
-                    <div class="dropdown-divider"></div>
-
-                    <div sec:authorize="isAuthenticated()">
-                        <a class="dropdown-item" href="/logout">Logout</a>
-                    </div>
-
-                    <div sec:authorize="isAnonymous()">
-                        <a class="dropdown-item" th:href="@{/login}">Login</a>
-                        <a class="dropdown-item" th:href="@{/sign-up}">Register</a>
-                    </div>
-
-
-                </div>
             </li>
-            <li class="nav-item p-1">
-                <div class="contact-btn hvr-pulse"> <a href="#" class="text-uppercase">
+            <li class="nav-item  p-2 m-1 ">
+                <a href="#process" class="nav-link text-uppercase hvr-underline-from-center">
+                    Process
+                </a>
+            </li>
+            <li class="nav-item  p-2 m-1 ">
+                <a href="#work" class="nav-link text-uppercase hvr-underline-from-center">
+                    Work
+                </a>
+            </li>
+            <!--<li class="nav-item dropdown p-2 m-1 ">-->
+                <!--<a class="nav-link dropdown-toggle  text-uppercase hvr-underline-from-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--<div sec:authorize="!hasRole('ROLE_ADMIN')"> User </div>-->
+                    <!--<div sec:authorize="hasRole('ROLE_ADMIN')"> ADMIN </div>-->
+                <!--</a>-->
+                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+                    <!--<a class="dropdown-item" href="/profile">Profile</a>-->
+                    <!--<a class="dropdown-item" href="/posts/create">Create Post</a>-->
+                    <!--<div class="dropdown-divider"></div>-->
+
+                    <!--<div sec:authorize="isAuthenticated()">-->
+                        <!--<a class="dropdown-item" href="/logout">Logout</a>-->
+                    <!--</div>-->
+
+                    <!--<div sec:authorize="isAnonymous()">-->
+                        <!--<a class="dropdown-item" th:href="@{/login}">Login</a>-->
+                        <!--<a class="dropdown-item" th:href="@{/sign-up}">Register</a>-->
+                    <!--</div>-->
+
+
+                <!--</div>-->
+            <!--</li>-->
+            <li class="nav-item p-0">
+                <div class="contact-btn hvr-pulse">
+                    <a href="#contact" class="text-uppercase">
                     Contact Me
-                </a></div>
+                 </a>
+                </div>
 
             </li>
         </ul>
@@ -78,7 +85,7 @@
 
 <!-- Footer -->
 <footer  th:fragment="footer">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center vh-max">
 
         <nav id="foot-nav" class="navbar  navbar-expand-md bg-faded justify-content-center">
             <ul class="navbar-nav nav w-100 justify-content-center">
@@ -123,12 +130,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/js/bootstrap-select.min.js"></script>
-
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>-->
-
-    <script type="text/javascript">
-
-    </script>
 
 
 </footer>
