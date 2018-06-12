@@ -56,7 +56,7 @@ html, body {
     height: calc(100vh - 75px) !important;
 }
 .vh-100 {
-    height: calc(100vh - 75px)  !important;
+    min-height: calc(100vh - 75px)  !important;
 }
 #status {
     width: 200px;
@@ -1234,4 +1234,15 @@ select:focus,
 textarea:focus,
 button:focus {
     outline: none;
+}
+
+hr.colored {
+    border-color: #EF4035;
+}
+
+hr {
+    max-width: 100px;
+    height: 2px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
 }
