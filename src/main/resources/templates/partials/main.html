@@ -19,6 +19,8 @@
 <body>
 
 <nav th:fragment="navbar" id="header-nav" class="navbar  navbar-expand-md bg-faded justify-content-center nav-top fixed-top">
+
+
     <div class="mr-auto w-50 d-flex ">
         <div>
             <span class="nav-name">Dane Miller</span>
@@ -60,6 +62,10 @@
             </li>
         </ul>
     </div>
+
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
 </nav>
 
 <!-- Footer -->
@@ -84,17 +90,18 @@
 
     </div>
     <div class="d-flex  align-self-baseline justify-content-center m-3 flex-wrap final">
-        <div class="col text-right align-self-baseline">
-            <div class="badge badge-pill badge-dark p-2"><a href="#">miller.l.dane@gmail.com</a></div>
+
+        <div class="col-12 col-md-4 text-center align-self-middle">
+            <div class="badge badge-pill badge-dark p-2 text-sm-center"><a href="#">miller.l.dane@gmail.com</a></div>
         </div>
 
-        <div class="col text-center">
+        <div class="col-12 col-md-4  text-center">
             <div class="hvr-outline-in"> <img th:src="@{~/img/logo-fb-black.png}" alt="Facebook"  class="logo-img "></div>
             <div class="hvr-outline-in"> <img th:src="@{~/img/logo-gplus-black.png}" alt="Google Plus" class="logo-img "></div>
             <div class="hvr-outline-in"> <img th:src="@{~/img/logo-reddit.png}" alt="Reddit"  class="logo-img "></div>
         </div>
 
-        <div class="col text-left align-self-baseline">
+        <div class="col-12 col-md-4 text-center text-sm-center align-self-baseline">
             <div class="badge badge-pill badge-dark p-2"><span>&copy; Dane L Miller. All rights reserved.</span></div>
         </div>
     </div>
@@ -110,6 +117,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.0-beta/js/bootstrap-select.min.js"></script>
+
+    <!-- Preloader -->
+    <script type="text/javascript">
+        //<![CDATA[
+        $(window).on('load', function() { // makes sure the whole site is loaded
+            $('#status').fadeOut('slow'); // will first fade out the loading animation
+            $('#preloader').delay(1000).fadeOut('slow'); // will fade out the white DIV that covers the website.
+            $('body').delay(1000).css({'overflow':'visible'});
+        })
+        //]]>
+    </script>
 
 
 </footer>
