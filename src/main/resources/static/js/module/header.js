@@ -31,6 +31,11 @@ HeaderObject.prototype.init = function() {
     });
 
 
+    if($(document).scrollTop() >= 50) {
+        $(self.headerNav).addClass('animated slideInDown bg-custom-dark').removeClass('nav-top');
+    }
+
+
 };
 
 

@@ -604,14 +604,16 @@ footer .logo-img:hover {
 
 footer {
     width: 100%;
-    min-height: 300px;
+    min-height: 500px;
     font-size: 16px;
     color: #fff;
-    background: url('../img/bg.jpg');
-    background-size: cover;
+    background: url('../img/buildings.jpg');
+    background-size: auto;
     -moz-box-shadow:    inset 0 0 10px #000000;
     -webkit-box-shadow: inset 0 0 10px #000000;
     box-shadow:         inset 0 0 10px #000000;
+
+
 }
 
 footer .final a{
@@ -1199,7 +1201,6 @@ nav .pagination li{
 .project-buttons .btn {
     padding-top: 20px;
     padding-bottom: 20px;
-    margin: 5px;
 }
 
 .proj-name {
@@ -1211,29 +1212,29 @@ nav .pagination li{
 }
 
 
-#contact-form .form-control {
+#contact-form .input {
 
     background: transparent;
     font-size: 4vh;
     border: 0;
-    border-bottom: 1px solid #9a9d96;
+    border-top: 1px solid #9a9d96;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
     outline: none;
     -webkit-appearance: none;
+    width: calc(100% - 50px);
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
-#contact-form .form-control:focus {
+#contact-form .input:focus {
     -webkit-appearance: none;
     outline: none;
 }
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
+textarea:focus, input:focus{
+    outline: 0;
 }
 
 hr.colored {
@@ -1245,4 +1246,19 @@ hr {
     height: 2px;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #990101eb;
+    border-color: #ffffff00;
+    border-radius: 0;
+}
+
+.btn:focus, .btn-secondary:focus {
+    outline: none;
+}
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none;
 }

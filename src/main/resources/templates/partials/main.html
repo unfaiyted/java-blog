@@ -44,33 +44,12 @@
                     Process
                 </a>
             </li>
-            <li class="nav-item  p-2 m-1 ">
+            <li class="nav-item p-2 m-1 mr-4">
                 <a href="#work" class="nav-link text-uppercase hvr-underline-from-center">
                     Work
                 </a>
             </li>
-            <!--<li class="nav-item dropdown p-2 m-1 ">-->
-                <!--<a class="nav-link dropdown-toggle  text-uppercase hvr-underline-from-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                    <!--<div sec:authorize="!hasRole('ROLE_ADMIN')"> User </div>-->
-                    <!--<div sec:authorize="hasRole('ROLE_ADMIN')"> ADMIN </div>-->
-                <!--</a>-->
-                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                    <!--<a class="dropdown-item" href="/profile">Profile</a>-->
-                    <!--<a class="dropdown-item" href="/posts/create">Create Post</a>-->
-                    <!--<div class="dropdown-divider"></div>-->
 
-                    <!--<div sec:authorize="isAuthenticated()">-->
-                        <!--<a class="dropdown-item" href="/logout">Logout</a>-->
-                    <!--</div>-->
-
-                    <!--<div sec:authorize="isAnonymous()">-->
-                        <!--<a class="dropdown-item" th:href="@{/login}">Login</a>-->
-                        <!--<a class="dropdown-item" th:href="@{/sign-up}">Register</a>-->
-                    <!--</div>-->
-
-
-                <!--</div>-->
-            <!--</li>-->
             <li class="nav-item p-0">
                 <div class="contact-btn hvr-pulse">
                     <a href="#contact" class="text-uppercase">
@@ -85,9 +64,9 @@
 
 <!-- Footer -->
 <footer  th:fragment="footer">
-    <div class="row justify-content-center vh-max">
+    <div class="row justify-content-center pt-4">
 
-        <nav id="foot-nav" class="navbar  navbar-expand-md bg-faded justify-content-center">
+        <nav id="foot-nav" class="navbar  navbar-expand-md bg-faded justify-content-center align-self-baseline">
             <ul class="navbar-nav nav w-100 justify-content-center">
                 <li class="nav-item p-3"><a href="#" class="hvr-underline-from-center">Development</a></li>
                 <li class="nav-item p-3"><a href="#" class="hvr-underline-from-center">Strategy</a></li>
@@ -97,12 +76,12 @@
 
     </div>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-self-baseline">
 
         <img th:src="@{~/img/logo.png}" alt="Dane Miller">
 
     </div>
-    <div class="d-flex  justify-content-center m-3 flex-wrap final">
+    <div class="d-flex  align-self-baselinejustify-content-center m-3 flex-wrap final">
         <div class="col text-right align-self-baseline">
             <div class="badge badge-pill badge-dark p-2"><a href="#">contact@danemiller.me</a></div>
         </div>
@@ -133,8 +112,6 @@
 
 
 </footer>
-
-
 
 
 </body>
