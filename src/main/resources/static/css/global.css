@@ -659,6 +659,10 @@ footer nav {
 }
 
 
+.footer-logo {
+    padding-top: 50px;
+    z-index: 100;
+}
 
 .fake-browser-ui .frame {
     display: block;
