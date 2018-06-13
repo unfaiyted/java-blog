@@ -41,29 +41,34 @@ function ProjectsObject(projects) {
     if(projects  === undefined) {
         this.projects = [
             {
-                title: "Pennywise",
-                desc: "Java Spring Framework, JQuery, Node",
-                github: "https://github.com/unfaiyted/pennywise",
-                image: "finance-dark.jpg",
-                imageScreen: "pennywise.jpg"
-            },
-            {
-                title: "XIV Gear Manager",
-                desc: "Java Spring Framework JQuery, Node, Selenium Web Driver, External Apis",
-                github: "https://github.com/unfaiyted/xiv-gear-planner",
-                image: "ffxiv-smaller.jpg",
-                imageScreen: "xiv-gear-planner.jpg"
-            },
-            {
                 title: "Eggs Benedict",
-                desc: "Java Spring Framework, JQuery",
+                desc: "Tool to track metabolic rate and calculate projected weight loss over time using the Harris Benedict Equation" +
+                ". Uses Java Spring Framework, JQuery, MeteorJS backend",
                 github: "https://github.com/unfaiyted/eggs-benedict",
                 image: "fitness.jpg",
                 imageScreen: "eggs-benedict.png"
             },
             {
+                title: "Pennywise",
+                desc: "Financial tracker to help users manage and track bills and create various financial estimations" +
+                ". Uses Java Spring Framework, JQuery, Node",
+                github: "https://github.com/unfaiyted/pennywise",
+                image: "finance-dark.jpg",
+                imageScreen: "pennywise.jpg"
+            },
+
+            {
+                title: "XIV Gear Manager",
+                desc: "Gear planning application to help gamers determine the proper order of gearing." +
+                ". Uses Java Spring Framework, JQuery, Node, Selenium Web Driver, Multiple external APIs",
+                github: "https://github.com/unfaiyted/xiv-gear-planner",
+                image: "ffxiv-smaller.jpg",
+                imageScreen: "xiv-gear-planner.jpg"
+            },
+            {
                 title: "miniMovieDB",
-                desc: "Node JSON Server, Movie DB Api",
+                desc: "Movie database to view and import movies to store in a sortable list with movie data included" +
+                ". Uses Node JSON Server, theMovieDB API",
                 github: "https://github.com/unfaiyted/movies-application",
                 image: "movies.jpg",
                 imageScreen: "mini-movies.png"
