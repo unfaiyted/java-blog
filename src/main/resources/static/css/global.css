@@ -646,6 +646,8 @@ footer nav {
     line-height: 0;
 }
 
+
+
 .fake-browser-ui .frame {
     display: block;
     height: 15px;
@@ -1196,6 +1198,7 @@ nav .pagination li{
 
 .project-buttons .prj-btn {
     position: relative;
+    z-index: 999;
 }
 
 .project-buttons .btn {
@@ -1258,7 +1261,17 @@ hr {
 .btn:focus, .btn-secondary:focus {
     outline: none;
 }
-.btn:focus,.btn:active:focus,.btn.active:focus,
-.btn.focus,.btn:active.focus,.btn.active.focus {
-    outline: none;
+
+
+.btn-primary {
+    font-family: 'Righteous', cursive;
+    background-color: transparent;
+    border: 1px solid #fff;
+    font-size: 3vh;
+}
+
+.btn-primary:hover {
+    font-family: 'Righteous', cursive;
+    background-color: #990101eb;
+    border: 1px solid #fff;
 }
