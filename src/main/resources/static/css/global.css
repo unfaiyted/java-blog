@@ -290,7 +290,7 @@ nav a:hover {
 
 }
 .comm-panel::after {
-    background: url("../img/24hours.jpg");
+    background: url("../img/communication-team.jpg");
     background-size: cover;
     position: absolute;
     top: 0;
@@ -303,7 +303,7 @@ nav a:hover {
 
 }
 .strategy-panel::after {
-    background: url("../img/time.jpg");
+    background: url("../img/strategy.jpg");
     background-size: cover;
     position: absolute;
     top: 0;
@@ -596,6 +596,18 @@ footer .logo-img {
     margin: 0;
     padding: 0;
     opacity: 0.7;
+}
+
+.footer-fade {
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    overflow:hidden;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
 }
 
 footer .logo-img:hover {
@@ -1274,4 +1286,17 @@ hr {
     font-family: 'Righteous', cursive;
     background-color: #990101eb;
     border: 1px solid #fff;
+}
+
+/*Disables annoying autofill colors*/
+@-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
 }

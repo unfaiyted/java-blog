@@ -51,7 +51,7 @@ function ProjectsObject(projects) {
                 title: "XIV Gear Manager",
                 desc: "Java Spring Framework JQuery, Node, Selenium Web Driver, External Apis",
                 github: "https://github.com/unfaiyted/xiv-gear-planner",
-                image: "ffxiv.jpg",
+                image: "ffxiv-smaller.jpg",
                 imageScreen: "xiv-gear-planner.jpg"
             },
             {
