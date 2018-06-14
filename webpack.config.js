@@ -15,6 +15,12 @@ module.exports = {
         filename: '[name].js'
     },
 
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
+    },
+
     // babel config
     module: {
         loaders: [

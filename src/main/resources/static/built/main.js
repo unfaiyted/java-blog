@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -94,13 +94,63 @@ module.exports = g;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2);
-__webpack_require__(6);
-module.exports = __webpack_require__(7);
 
+var content = __webpack_require__(10);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(12)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../css-loader/index.js!./animate.css", function() {
+		var newContent = require("!!../css-loader/index.js!./animate.css");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(3);
+__webpack_require__(7);
+module.exports = __webpack_require__(8);
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {(function (root) {
@@ -337,10 +387,10 @@ module.exports = __webpack_require__(7);
 
 })(this);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4).setImmediate))
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -396,7 +446,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(4);
+__webpack_require__(5);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -410,7 +460,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -600,10 +650,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(6)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -793,7 +843,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 (function(self) {
@@ -1265,18 +1315,19 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var PageHeader = __webpack_require__(8);
+var PageHeader = __webpack_require__(9);
 var ProjectLooper = __webpack_require__(14);
+var ContactSender = __webpack_require__(15);
 
 var header = new PageHeader();
-
 var project = new ProjectLooper();
+var contact = new ContactSender();
 
 // Cache selectors
 var lastId,
@@ -1326,13 +1377,13 @@ $(window).scroll(function () {
 });
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var animate = __webpack_require__(9);
+var animate = __webpack_require__(1);
 
 //Constructor
 function HeaderObject(settings) {
@@ -1368,56 +1419,6 @@ HeaderObject.prototype.init = function () {
 };
 
 module.exports = HeaderObject;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(10);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(12)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {
-	module.hot.accept("!!../css-loader/index.js!./animate.css", function() {
-		var newContent = require("!!../css-loader/index.js!./animate.css");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
 
 /***/ }),
 /* 10 */
@@ -2003,7 +2004,7 @@ module.exports = function (css) {
 "use strict";
 
 
-var animate = __webpack_require__(9);
+var animate = __webpack_require__(1);
 
 //extend jquery animate
 $.fn.extend({
@@ -2140,6 +2141,100 @@ ProjectsObject.prototype.renderProject = function (direction) {
 };
 
 module.exports = ProjectsObject;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var api = __webpack_require__(16);
+
+//Constructor
+function ContactObject(parameters) {
+
+    this.submitBtn = '#contactSubmit';
+
+    this.init();
+}
+
+ContactObject.prototype.init = function () {
+    var self = this;
+    // Setup Click event
+    $(this.submitBtn).click(function (e) {
+        $(this).prop('disabled', true);
+        e.preventDefault();
+        self.sendData();
+    });
+};
+
+ContactObject.prototype.sendData = function () {
+
+    var data = {
+        name: $('#contact-name').val(),
+        email: $('#contact-email').val(),
+        phone: $('#contact-phone').val(),
+        message: $('#contact-message').val()
+    };
+
+    api.addData("contact", data).then(function (d) {
+        $('#contact-sent').text("Message sent! Thank you!");
+    });
+};
+
+module.exports = ContactObject;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// Functions for local json file interactions
+module.exports = {
+
+    settings: { //settings
+        url: "/api/",
+        rateLimit: 5,
+        token: $("meta[name='_csrf']").attr("content"),
+        header: $("meta[name='_csrf_header']").attr("content")
+    },
+
+    //Inserts data into server
+    addData: function addData(location, data) {
+        location = typeof location !== 'undefined' ? location : "";
+        return fetch(module.exports.settings.url + location, {
+            method: "post",
+            credentials: "same-origin",
+            headers: {
+                "X-CSRF-Token": module.exports.settings.token,
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        });
+    },
+
+    deleteData: function deleteData(location, data) {
+        return module.exports.addData(location, data);
+    },
+
+    // query for post data
+    // parameter for url info
+    // ex: players/Name+Last/?post=3 type/parameter/query
+    getData: function getData(type, parameter, query) {
+        parameter = typeof parameter !== 'undefined' ? parameter : "";
+        query = typeof query !== 'undefined' ? query : "";
+
+        return fetch(module.exports.settings.url + type + "/" + parameter + query).then(function (response) {
+            return response.json();
+        });
+    }
+};
 
 /***/ })
 /******/ ]);

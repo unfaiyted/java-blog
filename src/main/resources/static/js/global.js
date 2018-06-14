@@ -1,9 +1,10 @@
 const PageHeader = require('./module/header');
 const ProjectLooper = require('./module/projects');
+const ContactSender = require('./module/contact');
 
 let header = new PageHeader();
-
 let project = new ProjectLooper();
+let contact = new ContactSender();
 
 
 // Cache selectors
